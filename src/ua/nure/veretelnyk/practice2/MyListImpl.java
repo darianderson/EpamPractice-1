@@ -1,8 +1,72 @@
 package ua.nure.veretelnyk.practice2;
 
-public class MyListImpl implements MyList {
+import java.util.Arrays;
+import java.util.Iterator;
+
+public class MyListImpl implements MyList, ListIterable {
+
+    @Override
+    public ListIterator listIterator() {
+        return new ListIteratorImpl();
+    }
+
+    private class ListIteratorImpl extends IteratorImpl implements ListIterator {
+
+        // TODO implement methods here
+
+        @Override
+        public boolean hasPrevious() {
+            return false;
+        }
+
+        @Override
+        public Object previous() {
+            return null;
+        }
+
+        @Override
+        public void set(Object e) {
+
+        }
+        // IMPLEMENT ALL METHODS HERE!!!
+    }
 
     //  TO READ наследование, абстрактные классы, интерфейсы
+    private class IteratorImpl implements Iterator<Object> {
+
+        private int carriage = -1;
+        private Object lastElementCalled = -1;
+        // returns true if the iteration has more elements
+        public boolean hasNext() {
+            return carriage<list.length-1;
+        }
+
+        // returns the next element in the iteration
+        public Object next() {
+            lastElementCalled = list[++carriage];
+            return lastElementCalled;
+        }
+
+        // removes from the underlying collection the last element
+        //returned by this iterator
+        public void remove() {// TODO doubleRemove()
+            if ( carriage == -1 || carriage>=list.length || !list[carriage].equals(lastElementCalled))
+                throw new IllegalStateException();
+            else{
+                Object[] tmp = new Object[list.length-1];
+                System.arraycopy(list,0,tmp,0,carriage);
+                System.arraycopy(list,carriage+1,tmp,carriage,list.length - carriage-1);
+                list = new Object[list.length-1];
+                System.arraycopy(tmp,0,list,0,list.length);
+                carriage--;
+            }
+        }
+    }
+
+
+    public Iterator<Object> iterator() {
+        return new IteratorImpl();
+    }
 
     private Object[] list;
 
@@ -11,12 +75,12 @@ public class MyListImpl implements MyList {
     }
 
     public String toString() {
-        StringBuilder myResult= new StringBuilder("[ ");
-        for(Object o : list){
+        StringBuilder myResult = new StringBuilder("[ ");
+        for (Object o : list) {
             if (o == null)
                 myResult.append("null ");
-            else{
-                String appendStr =o.toString() +" ";
+            else {
+                String appendStr = o.toString() + " ";
                 myResult.append(appendStr);
             }
         }
@@ -28,7 +92,7 @@ public class MyListImpl implements MyList {
     public void add(Object e) {
         Object[] tmp = list;
         list = new Object[list.length + 1];
-        System.arraycopy(tmp,0,list,0,tmp.length);
+        System.arraycopy(tmp, 0, list, 0, tmp.length);
 
         list[tmp.length] = e;
     }
@@ -41,30 +105,29 @@ public class MyListImpl implements MyList {
     @Override
     public boolean remove(Object o) {
         boolean wasFounded = false;
-        for(int  i = 0; i<list.length-1; ++i){
-            if(list[i] == null){
-                if(o == null)
+        for (int i = 0; i < list.length - 1; ++i) {
+            if (list[i] == null) {
+                if (o == null)
                     wasFounded = true;
-            }
-            else if (list[i].equals(o))
+            } else if (list[i].equals(o))
                 wasFounded = true;
-            if(wasFounded){
-                list[i] = list[i+1];
+            if (wasFounded) {
+                list[i] = list[i + 1];
             }
             //System.out.println(list[i]+" "+wasFounded+" "+o);
         }
-        if(list[list.length-1].equals(o) || wasFounded){
+        if (list[list.length - 1].equals(o) || wasFounded) {
             Object[] tmp = list;
-            list= new Object[list.length-1];
-            System.arraycopy(tmp,0,list,0,list.length);
+            list = new Object[list.length - 1];
+            System.arraycopy(tmp, 0, list, 0, list.length);
         }
         return wasFounded;
     }
-
+ // 1 2 3 4 5
     @Override
     public Object[] toArray() {
         Object[] tmp = new Object[list.length];
-        System.arraycopy(list,0,tmp,0,list.length);
+        System.arraycopy(list, 0, tmp, 0, list.length);
         return tmp;
     }
 
@@ -75,12 +138,11 @@ public class MyListImpl implements MyList {
 
     @Override
     public boolean contains(Object o) {
-        for (Object item : list){
-            if(item == null){
-                if(o == null)
+        for (Object item : list) {
+            if (item == null) {
+                if (o == null)
                     return true;
-            }
-            else if (item.equals(o))
+            } else if (item.equals(o))
                 return true;
         }
         return false;
@@ -89,8 +151,8 @@ public class MyListImpl implements MyList {
     @Override
     public boolean containsAll(MyList c) {
         Object[] o = c.toArray();
-        for(int i =0;i<c.size(); ++i){
-            if(!contains(o[i]))
+        for (int i = 0; i < c.size(); ++i) {
+            if (!contains(o[i]))
                 return false;
         }
         return true;

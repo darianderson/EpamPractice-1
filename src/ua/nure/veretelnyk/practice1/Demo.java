@@ -37,7 +37,7 @@ public class Demo {
         System.out.println("======Part3");
         Part3.main(new String[]{"a", "b", "c", "d", "34"});
 
-        System.out.println("======Part4");
+        System.out.println("======ua.nure.veretelnyk.practice3.Part4");
         Part4.main(new String[]{"25", "15"});
 
         System.out.println("======Part5");
