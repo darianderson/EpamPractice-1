@@ -51,6 +51,9 @@ public class Part5 {
         return dec;
     }
 
+    /**
+     * Создать класс с двумя статическими методами перевода из десятичной системы счисления в римскую и обратно.
+     */
     public static void main(String[] args) {
         for(int x=1; x<=100; ++x)
             System.out.println(x+" ====> "+decimal2Roman(x) +" ====> " +roman2Decimal(decimal2Roman(x)));

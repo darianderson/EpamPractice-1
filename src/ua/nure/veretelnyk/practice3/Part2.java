@@ -3,6 +3,10 @@ package ua.nure.veretelnyk.practice3;
 import java.util.Arrays;
 
 public class Part2 {
+    /**
+     * Дан текст. Найти и напечатать все слова максимальной и все слова минимальной длины.
+     * Словом считать последовательность содержащую только буквы (все остальные символы в состав слова не входят).
+     */
     public static void main(String[] args) {
         String input = Util.getInput("Part2Input.txt");
         input = input.replaceAll("\\p{Punct}\\p{Space}", " ");

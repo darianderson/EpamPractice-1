@@ -1,7 +1,5 @@
 package ua.nure.veretelnyk.practice3;
 
-
-import java.util.Arrays;
 import java.util.Random;
 
 public class Part1 {
@@ -23,6 +21,15 @@ public class Part1 {
             data[i] = lines[i].split(";");
         return data;
     }
+
+    /**
+     * Должен преобразовывать input data в строку следующего вида:
+     *
+     * ivanov ==> ivanov@mail.ru
+     * petrov ==> petrov@google.com
+     * obama ==> obama@google.com
+     * bush ==> bush@mail.ru
+     */
     public static String convert1(String input){
         String[][] data = getData(input);
         StringBuilder builder = new StringBuilder();
@@ -31,6 +38,15 @@ public class Part1 {
         }
         return builder.toString();
     }
+
+    /**
+     * Должен преобразовывать input data в строку следующего вида:
+     *
+     * Ivanov Ivan (email: ivanov@mail.ru)
+     * Petrov Petr (email: petrov@google.com)
+     * Obama Barack (email: obama@google.com)
+     * Bush George (email: bush@mail.ru)
+     */
     public static String convert2(String input){
         String[][] data = getData(input);
         StringBuilder builder = new StringBuilder();
@@ -39,6 +55,15 @@ public class Part1 {
         }
         return builder.toString();
     }
+
+    /**
+     * Должен преобразовывать input data в строку следующего вида
+     * (почтовый домен ==> список логинов через запятую тех пользователей,
+     * чьи почтовые ящики зарегестрированны в данном домене):
+     *
+     * mail.ru ==> ivanov, bush
+     * google.com ==> petrov, obama
+     */
     public static String convert3(String input){
         String[][] data = getData(input);
         StringBuilder builder = new StringBuilder();
@@ -65,6 +90,17 @@ public class Part1 {
         return builder.toString();
     }
 
+    /**
+     * Должен преобразовывать input data в строку следующего вида
+     * (должна быть добавлена колонка Password, сам пароль должен
+     * состоять ровно из 4 цифр, которые генерируются случайным образом):
+     *
+     * Login;Name;Email;Password
+     * ivanov;Ivan Ivanov;ivanov@mail.ru;2344
+     * petrov;Petr Petrov;petrov@google.com;3423
+     * obama;Barack Obama;obama@google.com;6554
+     * bush;George Bush;bush@mail.ru;4534
+     */
     public static String convert4(String input){
         String[] data = input.split("\r\n");
         StringBuilder builder = new StringBuilder();
