@@ -1,34 +1,31 @@
 package ua.nure.veretelnyk.practice2;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
 public class MyListImpl implements MyList, ListIterable {
 
     @Override
-    public ListIterator listIterator() {
-        return new ListIteratorImpl();
-    }
+    public ListIterator listIterator() { return new ListIteratorImpl(); }
 
     private class ListIteratorImpl extends IteratorImpl implements ListIterator {
 
-        // TODO implement methods here
-
         @Override
         public boolean hasPrevious() {
-            return false;
+            return super.carriage>=0 && super.carriage<list.length;
         }
 
         @Override
         public Object previous() {
-            return null;
+            super.lastElementCalled = list[super.carriage--];
+            return super.lastElementCalled;
         }
 
         @Override
         public void set(Object e) {
-
+            if (super.carriage<0 || super.carriage>=list.length)
+                throw new IllegalStateException();
+            list[super.carriage] = e;
         }
-        // IMPLEMENT ALL METHODS HERE!!!
     }
 
     //  TO READ наследование, абстрактные классы, интерфейсы
@@ -36,6 +33,7 @@ public class MyListImpl implements MyList, ListIterable {
 
         private int carriage = -1;
         private Object lastElementCalled = -1;
+
         // returns true if the iteration has more elements
         public boolean hasNext() {
             return carriage<list.length-1;
@@ -49,8 +47,8 @@ public class MyListImpl implements MyList, ListIterable {
 
         // removes from the underlying collection the last element
         //returned by this iterator
-        public void remove() {// TODO doubleRemove()
-            if ( carriage == -1 || carriage>=list.length || !list[carriage].equals(lastElementCalled))
+        public void remove() {
+            if ( carriage == -1 || carriage >= list.length || !list[carriage].equals(lastElementCalled))
                 throw new IllegalStateException();
             else{
                 Object[] tmp = new Object[list.length-1];

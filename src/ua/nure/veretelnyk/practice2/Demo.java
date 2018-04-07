@@ -79,7 +79,7 @@ public class Demo {
             System.out.println(ex.getClass());
         }
         System.out.println("==== Part3");
-/*
+
         list = new MyListImpl();
         list.add(1);
         list.add(2);
@@ -105,7 +105,7 @@ public class Demo {
 
         // false
         System.out.println(lit.hasPrevious());
-        // Elemenet
+        // Element
         list.add("Element");
         System.out.println(lit.next());
 
@@ -114,7 +114,5 @@ public class Demo {
 
         // true
         System.out.println(lit.hasPrevious());
-*/
-
     }
 }

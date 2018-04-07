@@ -1,7 +1,5 @@
 package ua.nure.veretelnyk.practice2;
 
-import java.util.Iterator;
-
 public interface MyList extends Iterable<Object> {
     // appends the specified element to the end of this list
     void add(Object e);
