@@ -9,8 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Part3 {
-
     private static final String FILE_PATH = "data/practice4/part3.txt";
+
     public static void main(String[] args) throws IOException{
         BufferedReader file = new BufferedReader(
                 new InputStreamReader(new FileInputStream(FILE_PATH), "UTF-8"));
@@ -38,7 +38,7 @@ public class Part3 {
                     break;
                 default:
                 case "int":
-                    regex = "\\b\\d+\\b"; // TODO fix this shit
+                    regex = "\\s\\d+\\s";
                     break;
             }
             Pattern p = Pattern.compile(regex);
@@ -49,6 +49,3 @@ public class Part3 {
         }
     }
 }
-// a bcd 43.43 432 и л фвыа 89 .98
-//word 34 haha l maybe 83 h lol 0.23 haha .287 s 98
-// word boundary
