@@ -3,8 +3,9 @@ package ua.nure.veretelnyk.practice3;
 import java.util.Random;
 
 public class Part1 {
+    private static final String FILE_PATH = "data/practice3/Part1Input.txt";
     public static void main(String[] args) {
-        String input = Util.getInput("Part1Input.txt");
+        String input = Util.getInput(FILE_PATH);
         System.out.println("~~~~~~~~~~~~");
         System.out.println(convert1(input));
         System.out.println("~~~~~~~~~~~~");

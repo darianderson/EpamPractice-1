@@ -3,12 +3,13 @@ package ua.nure.veretelnyk.practice3;
 import java.util.Arrays;
 
 public class Part2 {
+    private static final String FILE_PATH = "data/practice3/Part2Input.txt";
     /**
      * Дан текст. Найти и напечатать все слова максимальной и все слова минимальной длины.
      * Словом считать последовательность содержащую только буквы (все остальные символы в состав слова не входят).
      */
     public static void main(String[] args) {
-        String input = Util.getInput("Part2Input.txt");
+        String input = Util.getInput(FILE_PATH);
         input = input.replaceAll("\\p{Punct}\\p{Space}", " ");
         String[] words = input.split("[\\p{Punct}\\p{Space}]");
         bubbleSort(words);

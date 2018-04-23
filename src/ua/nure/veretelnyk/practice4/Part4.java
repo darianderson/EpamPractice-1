@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 public class Part4 implements Iterable {
 
+    private static final String FILE_PATH = "data/practice4/part4.txt";
     public static void main(String[] args) throws IOException {
         Part4 p = new Part4();
         for (Object aP : p) {
@@ -17,7 +18,7 @@ public class Part4 implements Iterable {
     private String[] sentences;
     private Part4() throws IOException {
         BufferedReader in = new BufferedReader(
-                new InputStreamReader(new FileInputStream("part4.txt"), "UTF-8"));
+                new InputStreamReader(new FileInputStream(FILE_PATH), "UTF-8"));
         String line;
 
         ArrayList<String> list = new ArrayList<>();

@@ -9,9 +9,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Part3 {
+
+    private static final String FILE_PATH = "data/practice4/part3.txt";
     public static void main(String[] args) throws IOException{
         BufferedReader file = new BufferedReader(
-                new InputStreamReader(new FileInputStream("part3.txt"), "UTF-8"));
+                new InputStreamReader(new FileInputStream(FILE_PATH), "UTF-8"));
 
         StringBuilder sb = new StringBuilder();
         String FileLine;
@@ -26,17 +28,17 @@ public class Part3 {
             String regex = "";
             switch (line){
                 case "char":
-                    regex = "\\s\\D\\s";  // TODO fix it for single chars and start and after chars, that already founded
+                    regex = "(?U)\\b\\w\\b";
                     break;
                 case "string":
-                    regex = "[a-zA-Zа-яА-Я][a-zA-Zа-яА-Я]+";  // TODO change for every symbol here, multilanguage
+                    regex = "(?U)\\b[^\\d\\W]{2,}\\b";
                     break;
                 case "double":
-                    regex = "\\d?+\\.\\d+";
+                    regex = "[+-]?([0-9]*[.])[0-9]+";
                     break;
                 default:
                 case "int":
-                    regex = "\\s\\d+\\s";
+                    regex = "\\b\\d+\\b"; // TODO fix this shit
                     break;
             }
             Pattern p = Pattern.compile(regex);
@@ -47,5 +49,6 @@ public class Part3 {
         }
     }
 }
+// a bcd 43.43 432 и л фвыа 89 .98
 //word 34 haha l maybe 83 h lol 0.23 haha .287 s 98
 // word boundary

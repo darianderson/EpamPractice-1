@@ -1,11 +1,13 @@
 package ua.nure.veretelnyk.practice3;
 
 public class Part3 {
+    private static final String FILE_PATH = "data/practice3/Part3Input.txt";
+
     /**
      * Дан текст. Напечатать текст, поставив первый символ каждого слова в верхний регистр.
      */
     public static void main(String[] args) {
-        String input = Util.getInput("Part3Input.txt");
+        String input = Util.getInput(FILE_PATH);
 
         StringBuilder builder = new StringBuilder(input);
         char[] spaces = {' ', '\t','\n','\n','\f','\r'};
