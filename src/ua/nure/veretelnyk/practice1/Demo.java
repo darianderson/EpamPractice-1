@@ -10,7 +10,7 @@ package ua.nure.veretelnyk.practice1;
     Если логин=ivanovjtp, то your_last_name=ivanov
     3. Дополнительно в корневом пакете расположить класс Demo, который демонстриует работу всех 7 подзадач.
     4. Проект загрузить в репозиторий, проверить, успешность сборки в Jenkins, оптимизировать метрики в Sonar (после того, как будет дан доступ к этим системам).
-    5. Каждый класс Part1, Part2, ..., Part7 содержит метод main.
+    5. Каждый класс part1, part2, ..., Part7 содержит метод main.
 
 
     Вопросы.
@@ -28,10 +28,10 @@ package ua.nure.veretelnyk.practice1;
 
 public class Demo {
     public static void main(String[] args) {
-        System.out.println("======Part1");
+        System.out.println("======part1");
         Part1.main(new String[]{});
 
-        System.out.println("======Part2");
+        System.out.println("======part2");
         Part2.main(new String[]{"2", "3"});
 
         System.out.println("======Part3");

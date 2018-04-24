@@ -14,7 +14,7 @@ public class Part5 {
         ResourceBundle res = ResourceBundle.getBundle(RES_STR);
         Scanner in = new Scanner(System.in);
         String line;
-        while ( (line = in.nextLine()).trim() != "stop"){
+        while ( ! "stop".equals( (line = in.nextLine()).trim()) ){
             System.out.println(res.getString(line.trim()));
         }
     }

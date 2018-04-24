@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class Demo {
     public static void main(String[] args) {
-        System.out.println("==== Part1");
+        System.out.println("==== part1");
         MyList list = new MyListImpl();
         // [A, A2]
         list.add("A");
@@ -44,7 +44,7 @@ public class Demo {
         list.add("B");
         System.out.println(list.containsAll(anotherList));
 
-        System.out.println("==== Part2");
+        System.out.println("==== part2");
 
         list = new MyListImpl();
         list.add(1);

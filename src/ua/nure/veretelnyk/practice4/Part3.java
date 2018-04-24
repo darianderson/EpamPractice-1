@@ -24,6 +24,7 @@ public class Part3 {
         System.out.println(sb);
         Scanner in = new Scanner(System.in);
         String line;
+
         while ( ! "stop".equals(line = in.nextLine())){
             String regex = "";
             switch (line){

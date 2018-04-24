@@ -1,0 +1,43 @@
+Задание 2
+Создать класс Spam, который получает массив интервалов времени в миллисекундах 
+и согласованный с ним массив сообщений,
+и выводит одновременно (!) 
+соответствующие сообщения на экран через заданные интервалы времени.
+
+По нажатию на клавишу Enter приложение должно завершать свою работу
+(данную функциональность поместить в метод Spam.main).
+
+При демонстрации работы смоделировать ввод Enter через 5 сек
+(данную функциональность поместить в метод Part2.main).
+
+Замечания!
+Класс Spam НЕ является потоком.
+Для каждого сообщения создаёт поток.
+На занятии моделировать нажатие Enter не нужно. После будет выслан код, как это сделать.
+
+Заглушка:
+public class Spam {
+	
+	public Spam(...) {
+		
+	}
+	
+	public void start() {
+		// start threads here
+	}
+
+	public void stop() {
+		// terminate threads here
+	}
+	
+	public static void main(String[] args) {
+		Spam spam = new Spam(...);
+		spam.start(); 
+		// wait for Enter
+		Scanner in = new Scanner(System.in);
+		in.nextLine(); // return only if Enter obtained
+		in.close();
+		spam.stop();
+	}
+}
+
