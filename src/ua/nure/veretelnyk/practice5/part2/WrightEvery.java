@@ -21,8 +21,6 @@ public class WrightEvery extends Thread {
 
             if (isInterrupted())
                 return;
-
-            // TODO спецификация sleep
         }
     }
 }
