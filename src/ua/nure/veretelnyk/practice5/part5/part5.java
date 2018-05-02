@@ -11,6 +11,7 @@ public class part5 {
             writer[i] = new Writer(i);
             writer[i].start();
         }
+
         for (int i=0; i<10; ++i)
             writer[i].join();
 
