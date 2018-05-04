@@ -1,5 +1,6 @@
 package ua.nure.veretelnyk.practice5.part5;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -27,11 +28,11 @@ public class Writer extends Thread{
                 }
             }
         }
-        synchronized (raf){
-            try{
+        synchronized (raf) {
+            try {
                 raf.seek(pointer + 20);
                 raf.write(System.lineSeparator().getBytes());
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
