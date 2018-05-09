@@ -31,7 +31,7 @@ public class ArrayListExmp {
 
 		@Override
 		public boolean equals(Object obj) {
-			ua.nure.kolesnikov.module9.A a = (ua.nure.kolesnikov.module9.A)obj;
+			A a = (A)obj;
 			System.out.printf("A(%s).equals(%s)%n", x, a.x);
 			return x == a.x;
 		}
