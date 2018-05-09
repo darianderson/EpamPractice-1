@@ -13,7 +13,8 @@ public class Parking {
 
     public boolean arrive(Object car) { return arrive(car, 0); }
     public boolean arrive(Object car, int spot){
-        // TODO add checking for null
+        if (car == null)
+            return false;
         // check if there is no such car
        if (list.contains(car) || spot >= list.size())
             return false;
@@ -27,29 +28,20 @@ public class Parking {
            return false;
 
 
-//        System.out.printf("%s: %s%n",spot,list.size());
+       //System.out.printf("%s: %s%n",spot,list.size());
        list.set(spot, car);
         return true;
     }
 
-//    private boolean isThereCar(Object car){
-//        for(Object o : list)
-//            if (o != null && o.equals(car))
-//                return true;
-//        return false;
-//    }
-
     public boolean depart(Object car){
-//        if (!isThereCar(car))
-//            return false;
-        // TODO add checking for null
+        if (car == null)
+            return false;
 
         int index = list.indexOf(car);
         if (index != -1) {
             list.set(index, null);
             return true;
         }
-
 
         return false;
     }

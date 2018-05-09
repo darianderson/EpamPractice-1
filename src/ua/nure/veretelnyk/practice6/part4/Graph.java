@@ -1,34 +1,27 @@
 package ua.nure.veretelnyk.practice6.part4;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Graph {
-    private boolean[][] matrix;
-    private int nodes;
-    // TODO check if it is exitsting
-    public Graph(int nodes){
-        this.nodes = nodes;
-        matrix = new boolean[nodes][nodes];
+    private Set<Vertex> vertices;
+
+    public Graph(){
+        vertices = new HashSet<>();
     }
 
-    public boolean add(int node, int[] connectedTO){
-        if (node > nodes && connectedTO.length > nodes)
+    public boolean add(int nodeNo, int[] connectedTo){
+        if (vertices.contains(new Vertex(nodeNo)))
             return false;
+        Vertex vertex = new Vertex(nodeNo);
+        for(int connected : connectedTo)
+            vertices.add(new Vertex(connected));
 
-        for(int i=0; i<connectedTO.length; ++i)
-            matrix[node][connectedTO[i]] = true;
-
-        return true;
-    }
-
-    public boolean remove(int node){
-        if (node>=nodes)
-            return false;
-
-        Arrays.fill(matrix[node],false);
-        for(int i=0; i<nodes; ++i)
-            matrix[i][node] = false;
-
+        for(Vertex v : vertices){
+            for(int connected : connectedTo){
+                if (v.getId() == connected)
+                    vertex.addConnected(v);
+            }
+        }
         return true;
     }
 
@@ -36,9 +29,10 @@ public class Graph {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (boolean[] aMatrix : matrix) {
-            for (int j = 0; j < aMatrix.length; ++j)
-                sb.append(aMatrix[j] ? 1 : 0).append(" ");
+        for(Vertex v : vertices){
+            Iterator<Vertex> it = v.iterator();
+            while (it.hasNext())
+                sb.append(it.next().getId()).append(" ");
             sb.append("\n");
         }
         return sb.toString();

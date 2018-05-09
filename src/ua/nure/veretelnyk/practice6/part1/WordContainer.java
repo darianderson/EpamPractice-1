@@ -34,17 +34,3 @@ public class WordContainer extends ArrayList<Word> {
     }
 
 }
-
-
-
-// TODO delete this code after
-//        int index = -1;
-//        for(Object o : list) {
-//            if (o != null && o.equals(car))
-//                break;
-//            index++;
-//        }
-//        if (index != -1) {
-//            list.set(++index, null);
-//            return true;
-//        }

@@ -52,6 +52,12 @@ public class Part2 {
         end = System.nanoTime();
         System.out.printf("Iterable. LinkedList. %.2f %n", (end-start)*Math.pow(10, -9) );
 
+//        List<Object> list = new ArrayList<>();
+//        for(int i=0; i<10; ++i)
+//            list.add(i);
+//        System.out.println(list);
+//        processIterable(list);
+
 	}
 
 	private static void intit(ArrayList<Object> arrayList, LinkedList<Object> linkedList){
@@ -72,15 +78,15 @@ public class Part2 {
     }
 
     private static void processIterable(List<Object> list){
-        int carriage = 0;
+        Iterator  it = list.iterator();
         while (list.size() != 1){
-            carriage += (k-1);
-            carriage %= list.size();
 
-            // TODO comtinue iterator
-            Iterator  it = list.iterator();
-            for (int i=0; i<=carriage; ++i)
+            for (int i=0; i<k; ++i) {
+                if (!it.hasNext())
+                    it = list.iterator();
+
                 it.next();
+            }
 
             it.remove();
         }
@@ -108,7 +114,8 @@ public class Part2 {
 //        Enter number of people: 100000
 //        Enter frequency: 3
 //
-//        With indexing. ArrayList. 0.34
-//        With indexing. LinkedList. 5.57
-//        With iterator. ArrayList. 2.58
-//        With iterator. LinkedList. 24.27
+//        Indexed. ArrayList. 0.43
+//        Indexed. LinkedList. 5.75
+//
+//        Iterable. ArrayList. 0.42
+//        Iterable. LinkedList. 0.01

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Input XML document. This XML is valid against input.xsd XML schema-->
+
+<pmns:projects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:pmns="http://nure.ua/veretelnyk/ProjectManager/entity"
+                xsi:schemaLocation="http://nure.ua/veretelnyk/ProjectManager/entity projects.xsd">
+    <project>
+        <customer>
+            <id>lagrange</id>
+            <name>Joseph Louis Lagrange</name>
+        </customer>
+        <name>Personal web-site</name>
+        <price>800</price>
+        <description>I need my personal blog, so my fans can read my articles.</description>
+    </project>
+
+    <project>
+        <customer>
+            <id>gates</id>
+            <name>Bill Gates</name>
+        </customer>
+        <name>DOS beta</name>
+        <price>2000</price>
+        <description>Hey. I am creating my personal OS, so I need something to start. Can someone create a beta for me?</description>
+    </project>
+
+    <project>
+        <customer>
+            <id>skywalker</id>
+            <name>Luke Skywalker</name>
+        </customer>
+        <name>Virus for empire</name>
+        <price>500</price>
+        <description>We are going to defeat empire, but we need virus for there ships. Very urgent.</description>
+    </project>
+
+    <project>
+        <customer>
+            <id>musk</id>
+            <name>Elon Musk</name>
+        </customer>
+        <name>Tesla AI</name>
+        <price>5000</price>
+        <description>Need a qualified specialist to create ai for self-driving cars.</description>
+    </project>
+</pmns:projects>
