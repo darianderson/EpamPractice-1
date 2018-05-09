@@ -3,6 +3,7 @@ package ua.nure.veretelnyk.QuestionPractice;
 import org.xml.sax.SAXException;
 import ua.nure.veretelnyk.QuestionPractice.constants.Constants;
 import ua.nure.veretelnyk.QuestionPractice.controller.DOM;
+import ua.nure.veretelnyk.QuestionPractice.controller.SAX;
 import ua.nure.veretelnyk.QuestionPractice.entity.Test;
 import ua.nure.veretelnyk.QuestionPractice.util.Sorter;
 
@@ -12,8 +13,10 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException, TransformerException {
-        if (args.length != 1)
+        if (args.length != 1) {
             System.out.println("Enter file with questions.");
+            return;
+        }
 
         String xmlFileName = args[0];
 
@@ -29,5 +32,19 @@ public class Main {
 
         //save
         DOM.saveToXML(test, Constants.OUTPUT_DOM_XML_FILE);
+
+
+        /////////////////////////////////////// SAX
+
+        //get
+        SAX sax = new SAX(Constants.INPUT_XML_FILE);
+        sax.parse(true);
+        test = sax.getTest();
+
+        //sort
+        Sorter.setSortQuestionsByAnswersNumber(test);
+
+        //save
+        DOM.saveToXML(test, Constants.OUTPUT_SAX_XML_FILE);
     }
 }
