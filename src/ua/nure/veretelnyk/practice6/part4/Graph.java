@@ -8,18 +8,25 @@ public class Graph {
     public Graph(){
         vertices = new HashSet<>();
     }
+    public Graph(int n) { vertices = new HashSet<>(n); }
 
     public boolean add(int nodeNo, int[] connectedTo){
-        if (vertices.contains(new Vertex(nodeNo)))
-            return false;
         Vertex vertex = new Vertex(nodeNo);
+
+        vertices.add(vertex);
+        for(Vertex v : vertices)
+            if (v.equals(vertex))
+                vertex = v;
+
         for(int connected : connectedTo)
             vertices.add(new Vertex(connected));
 
         for(Vertex v : vertices){
             for(int connected : connectedTo){
-                if (v.getId() == connected)
+                if (v.getId() == connected) {
                     vertex.addConnected(v);
+                    v.addConnected(vertex);
+                }
             }
         }
         return true;
