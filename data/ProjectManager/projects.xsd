@@ -15,7 +15,7 @@
     <xsd:complexType name="project">
         <xsd:sequence>
             <xsd:element name="customer" type="tns:customer"/>
-            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="ProjectName" type="xsd:string"/>
             <xsd:element name="price" type="xsd:integer"/>
             <xsd:element name="description" type="xsd:string"/>
         </xsd:sequence>

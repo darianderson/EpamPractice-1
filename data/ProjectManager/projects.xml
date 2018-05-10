@@ -9,7 +9,7 @@
             <id>lagrange</id>
             <name>Joseph Louis Lagrange</name>
         </customer>
-        <name>Personal web-site</name>
+        <ProjectName>Personal web-site</ProjectName>
         <price>800</price>
         <description>I need my personal blog, so my fans can read my articles.</description>
     </project>
@@ -19,7 +19,7 @@
             <id>gates</id>
             <name>Bill Gates</name>
         </customer>
-        <name>DOS beta</name>
+        <ProjectName>DOS beta</ProjectName>
         <price>2000</price>
         <description>Hey. I am creating my personal OS, so I need something to start. Can someone create a beta for me?</description>
     </project>
@@ -29,7 +29,7 @@
             <id>skywalker</id>
             <name>Luke Skywalker</name>
         </customer>
-        <name>Virus for empire</name>
+        <ProjectName>Virus for empire</ProjectName>
         <price>500</price>
         <description>We are going to defeat empire, but we need virus for there ships. Very urgent.</description>
     </project>
@@ -39,7 +39,7 @@
             <id>musk</id>
             <name>Elon Musk</name>
         </customer>
-        <name>Tesla AI</name>
+        <ProjectName>Tesla AI</ProjectName>
         <price>5000</price>
         <description>Need a qualified specialist to create ai for self-driving cars.</description>
     </project>
