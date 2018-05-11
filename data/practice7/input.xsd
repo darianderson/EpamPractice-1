@@ -18,67 +18,44 @@
     <!-- basic building element -->
     <xsd:complexType name="Gun">
         <xsd:sequence>
+
             <xsd:element name="Model" type="xsd:string"/>
-
-            <xsd:element name="Handy">
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:minLength value="1"/>
-                        <xsd:enumeration value="one-hand"/>
-                        <xsd:enumeration value="two-hand"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-
+            <xsd:element name="Handy" type="tns:Handy"/>
             <xsd:element name="Origin" type="xsd:string"/>
-
             <xsd:element name="TTC" type="tns:TTC"/>
-            <xsd:element name="Material"/>
+            <xsd:element name="Material" type="xsd:string"/>
+
         </xsd:sequence>
     </xsd:complexType>
+
+
     <!-- tactical and technical characteristics -->
     <xsd:complexType name="TTC">
         <xsd:sequence>
 
-            <xsd:element name="Range" type="tns:Range"/>
-
+            <xsd:element name="Distance" type="tns:Distance"/>
             <xsd:element name="SightingRange" type="xsd:integer"/>
-
-
             <xsd:element name="Collar" type="xsd:boolean"/>
             <xsd:element name="Optics" type="xsd:boolean"/>
 
         </xsd:sequence>
     </xsd:complexType>
 
-    <xsd:complexType name="Range">
-        <xsd:sequence>
-
-            <!-- Type of the distance can be short, middle or long -->
-            <!--xsd:element name="Type">
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="short"/>
-                        <xsd:enumeration value="middle"/>
-                        <xsd:enumeration value="long"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element-->
-
-            <!-- Distance of short -->
-            <xsd:element name="Distance">
-                <xsd:complexType>
-                    <xsd:choice>
-                        <xsd:element name="short" type="tns:short"/>
-                        <xsd:element name="middle" type="tns:middle"/>
-                        <xsd:element name="long" type="tns:long"/>
-                    </xsd:choice>
-                </xsd:complexType>
-            </xsd:element>
-
-
-        </xsd:sequence>
+    <xsd:complexType name="Distance">
+        <xsd:choice>
+            <xsd:element name="short" type="tns:short"/>
+            <xsd:element name="middle" type="tns:middle"/>
+            <xsd:element name="long" type="tns:long"/>
+        </xsd:choice>
     </xsd:complexType>
+
+    <xsd:simpleType name="Handy">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:enumeration value="one-hand"/>
+            <xsd:enumeration value="two-hand"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 
     <xsd:simpleType name="short">
         <xsd:restriction base="xsd:integer">
