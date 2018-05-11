@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Input XML document. This XML is valid against input.xsd XML schema-->
+
+<guns:Guns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:guns="http://nure.ua/veretelnyk/GunsPractice/entity"
+        xsi:schemaLocation="http://nure.ua/veretelnyk/GunsPractice/entity input.xsd">
+    <Gun>
+        <Model>AK-47</Model>
+        <Handy>two-hand</Handy>
+        <Origin>Soviet Union</Origin>
+        <TTC>
+            <Range>
+                <!--Type>long</Type-->
+                <Distance>
+                    <long>1500</long>
+                </Distance>
+            </Range>
+            <SightingRange>800</SightingRange>
+            <Collar>true</Collar>
+            <Optics>false</Optics>
+        </TTC>
+        <Material>Metal</Material>
+
+        <!--Model></Model>
+        <Handy></Handy>
+        <Origin></Origin>
+        <TTC>
+            <Range>
+                <Type></Type>
+                <Distance></Distance>
+            </Range>
+            <SightingRange></SightingRange>
+            <Collar></Collar>
+            <Optics></Optics>
+        </TTC>
+        <Material></Material-->
+    </Gun>
+</guns:Guns>

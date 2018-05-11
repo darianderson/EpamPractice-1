@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  XML schema -->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://nure.ua/veretelnyk/GunsPractice/entity"
+            xmlns:tns="http://nure.ua/veretelnyk/GunsPractice/entity"
+            version="1.1">
+
+    <!-- Root element for storing all guns-->
+    <xsd:element name="Guns">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Gun" type="tns:Gun" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- basic building element -->
+    <xsd:complexType name="Gun">
+        <xsd:sequence>
+            <xsd:element name="Model" type="xsd:string"/>
+
+            <xsd:element name="Handy">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:enumeration value="one-hand"/>
+                        <xsd:enumeration value="two-hand"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+
+            <xsd:element name="Origin" type="xsd:string"/>
+
+            <xsd:element name="TTC" type="tns:TTC"/>
+            <xsd:element name="Material"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- tactical and technical characteristics -->
+    <xsd:complexType name="TTC">
+        <xsd:sequence>
+
+            <xsd:element name="Range" type="tns:Range"/>
+
+            <xsd:element name="SightingRange" type="xsd:integer"/>
+
+
+            <xsd:element name="Collar" type="xsd:boolean"/>
+            <xsd:element name="Optics" type="xsd:boolean"/>
+
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Range">
+        <xsd:sequence>
+
+            <!-- Type of the distance can be short, middle or long -->
+            <!--xsd:element name="Type">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="short"/>
+                        <xsd:enumeration value="middle"/>
+                        <xsd:enumeration value="long"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element-->
+
+            <!-- Distance of short -->
+            <xsd:element name="Distance">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="short" type="tns:short"/>
+                        <xsd:element name="middle" type="tns:middle"/>
+                        <xsd:element name="long" type="tns:long"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+
+
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="short">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="500"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="middle">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="500"/>
+            <xsd:maxInclusive value="1000"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="long">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="1000"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
+
+<!--
+Check with and without tns
+
+bin/xjc
+xjc -d input.xsd
+path in ""
+-->
