@@ -1,7 +1,9 @@
 # EpamPractice
 My practice tasks form Epam course.
 
+## Add jfxrt.jar
 
-### Regexp
-
-".+\\.(com|ua|ru)"  - метод проверки того что строка заканчивается на .com или .ru или .ua.
+To add javaFx library to next commands:
+```
+File -> Project Structer -> Libraries -> C:\Program Files\Java\jre1.8.0_161\lib\ext\jfxrt.jar
+```
