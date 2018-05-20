@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Parking {
     private ArrayList<Object> list = new ArrayList<>();
 
-    public Parking(int n){
+    Parking(int n){
         for(int i=0; i<n; ++i)
             list.add(null);
     }
