@@ -6,7 +6,7 @@ public class Word implements Comparable {
 	
 	private int frequency;
 
-	Word(String word) {
+	public Word(String word) {
 		this.word = word;
 		frequency = 1;
 	}
