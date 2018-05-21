@@ -1,6 +1,7 @@
 package ua.nure.veretelnyk.practice8;
 
 import ua.nure.veretelnyk.practice8.entity.DBException;
+import ua.nure.veretelnyk.practice8.entity.Group;
 import ua.nure.veretelnyk.practice8.entity.User;
 
 import java.util.List;
@@ -29,16 +30,34 @@ public class Demo {
         System.out.println("===========================");
 
 //        // Part 2
-//        dbManager.insertGroup(Group.createGroup("teamB"));
-//        dbManager.insertGroup(Group.createGroup("teamC"));
-//        printList(dbManager.findAllGroups());
-//        //groups ==> [teamA, teamB, teamC]
-//
-//        System.out.println("===========================");
+        dbManager.insertGroup(Group.createGroup("teamB"));
+        dbManager.insertGroup(Group.createGroup("teamC"));
+        printList(dbManager.findAllGroups());
+        //groups ==> [teamA, teamB, teamC]
+
+        System.out.println("===========================");
+
+        // Part 3
+        User userPetrov = dbManager.getUser("petrov");
+        User userIvanov = dbManager.getUser("ivanov");
+        User userObama = dbManager.getUser("obama");
+
+        Group teamA = dbManager.getGroup("teamA");
+        Group teamB = dbManager.getGroup("teamB");
+        Group teamC = dbManager.getGroup("teamC");
+
+        // method setGroupsForUser must implement transaction!
+        dbManager.setGroupsForUser(userIvanov, teamA);
+        dbManager.setGroupsForUser(userPetrov, teamA, teamB);
+        dbManager.setGroupsForUser(userObama, teamA, teamB, teamC);
+
+//        for (User user : dbManager.findAllUsers()) {
+//            printList(dbManager.getUserGroups(user));
+//            System.out.println("~~~~~");
+//        }
 
     }
 }
-
 
 //    Создать и реализовать соответствующие типы таким образом,
 //    чтобы при запуске класса Demo отрабатывала соответствующая функциональность.
