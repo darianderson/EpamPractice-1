@@ -1,0 +1,28 @@
+# DROP DATABASE practice8;
+# CREATE DATABASE practice8;
+#USE practice8;
+
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS groups;
+DROP TABLE IF EXISTS users_groups;
+
+# GRANT ALL ON practice8.* TO 'blackwell'@'localhost' IDENTIFIED BY 'salt';
+
+CREATE TABLE users(
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,
+  login VARCHAR(32) UNIQUE NOT NULL
+);
+CREATE TABLE groups(
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,
+  name VARCHAR(32) UNIQUE NOT NULL
+);
+CREATE TABLE users_groups(
+  user_id INT UNSIGNED REFERENCES users(id),
+  group_id INT UNSIGNED REFERENCES groups(id)
+);
+
+INSERT INTO users VALUES (DEFAULT , 'ivanov');
+INSERT INTO groups VALUES (DEFAULT , 'teamA');
+
+# ON DELETE CASCADE
+# ON UPDATE CASCADE

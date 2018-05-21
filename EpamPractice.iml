@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jfxrt" level="project" />
+    <orderEntry type="library" name="com.mysql.jdbc_5.1.5" level="project" />
   </component>
 </module>
