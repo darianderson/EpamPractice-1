@@ -4,9 +4,18 @@ public class Part7 {
 	
 	public static void main(String[] args) {
 		Range range = new Range(3,10);
-		// TODO make el Integer
+
 		for (Object el : range)
-			System.out.printf("%d ", el);
+			System.out.printf("%d ", (int) el);
+
+        System.out.println();
+		range = new Range(3, 10, true);
+
+		for(Object el : range)
+            System.out.printf("%d ", (int) el);
+
+        System.out.println();
+
 	}
 
 }

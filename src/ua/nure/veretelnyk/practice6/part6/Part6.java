@@ -12,9 +12,10 @@ import java.util.regex.Pattern;
 public class Part6 {
 
     private static final String FILE_NAME = "data/practice6/part6.txt";
-	private static WordContainer words = new WordContainer();
 
 	public static void main(String[] args) {
+
+        WordContainer words = new WordContainer();
         StringBuilder sb = new StringBuilder();
         try {
             Scanner scanner = new Scanner(new File(FILE_NAME), "UTF-8");
@@ -29,11 +30,22 @@ public class Part6 {
         while (m.find())
             words.add(new Word(m.group()));
 
-        frequency();
-        System.out.println(words.get(0) + "\n" + words.get(1) +"\n" + words.get(2));
-	}
-	private static void frequency(){
-	    words.sort(Comparator.naturalOrder());
-    }
+        frequency(words);
+        System.out.println("~~~~~~~~");
 
+        length(words);
+        System.out.println("~~~~~~~~");
+
+        duplicates(words);
+        System.out.println("~~~~~~~~");
+
+	}
+
+
+	private static void frequency (WordContainer words){ }
+
+    private static void length (WordContainer words){ }
+
+    private static void duplicates(WordContainer words) { }
 }
+

@@ -23,7 +23,7 @@ public class Range implements Iterable {
         iterator = new RangeIterator();
     }
 
-    private class RangeIterator implements Iterator{
+    private class RangeIterator implements Iterator<Integer> {
 
         @Override
         public boolean hasNext() {
@@ -33,8 +33,6 @@ public class Range implements Iterable {
                 return current+1 <= m;
         }
 
-        // TODO rewrite with Integer or something
-
         @Override
         public Integer next() {
             if (reverse)
@@ -42,6 +40,7 @@ public class Range implements Iterable {
             else
                 return ++current;
         }
+
     }
 
     @Override

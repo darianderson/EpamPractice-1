@@ -36,4 +36,7 @@ public class Word implements Comparable {
         else
             return word.compareTo(w.word);
     }
+
+    public int frequency() { return frequency; }
+
 }
