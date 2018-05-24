@@ -1,6 +1,5 @@
 package ua.nure.veretelnyk.practice6.part6;
 
-import ua.nure.veretelnyk.practice6.part1.Word;
 import ua.nure.veretelnyk.practice6.part1.WordContainer;
 
 import java.io.File;
@@ -15,7 +14,6 @@ public class Part6 {
 
 	public static void main(String[] args) {
 
-        WordContainer words = new WordContainer();
         StringBuilder sb = new StringBuilder();
         try {
             Scanner scanner = new Scanner(new File(FILE_NAME), "UTF-8");
@@ -26,23 +24,33 @@ public class Part6 {
             ex.printStackTrace();
         }
 
-        Matcher m = Pattern.compile("\\w+").matcher(sb.toString());
-        while (m.find())
-            words.add(new Word(m.group()));
 
-        frequency(words);
+        frequency(sb.toString());
         System.out.println("~~~~~~~~");
 
-        length(words);
+        //length(words);
         System.out.println("~~~~~~~~");
 
-        duplicates(words);
+        //duplicates(words);
         System.out.println("~~~~~~~~");
 
 	}
 
+    // lostless hope
+	private static void frequency (String words){
+        Map<String, Integer> map = new HashMap<>();
+        Matcher m = Pattern.compile("\\w+").matcher(words);
+        while (m.find()){
+            String wordGroup = m.group();
+            if (map.containsKey(wordGroup))
+                map.put(wordGroup, map.get(wordGroup) + 1);
+            else
+                map.put(wordGroup, 1);
+        }
 
-	private static void frequency (WordContainer words){ }
+        Collection<Integer> collection = map.values();
+
+	}
 
     private static void length (WordContainer words){ }
 
