@@ -1,6 +1,6 @@
 package ua.nure.veretelnyk.practice6.part4;
 
-public class part4 {
+public class Part4 {
     public static void main(String[] args) {
         Graph g = new Graph(6);
 

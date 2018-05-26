@@ -10,6 +10,7 @@ public class Part1 {
 		List<Word> list = new WordContainer();
 		Scanner in = new Scanner(System.in);
 
+		System.out.println("Enter words (stop to finish): ");
 		String line = in.next();
 
         while ( !"stop".equals(line)){
