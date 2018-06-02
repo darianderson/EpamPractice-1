@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <servlet>
+        <servlet-name>CalcServlet</servlet-name>
+        <servlet-class>ua.nure.veretelnyk.practice9.part1_123.CalcServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CalcServlet</servlet-name>
+        <url-pattern>/calc</url-pattern>
+    </servlet-mapping>
+
+    
+    <servlet>
+        <servlet-name>Part2_1</servlet-name>
+        <servlet-class>ua.nure.veretelnyk.practice9.part2_1.Part2Form</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Part2_1</servlet-name>
+        <url-pattern>/part2_1</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Part2_1Select</servlet-name>
+        <servlet-class>ua.nure.veretelnyk.practice9.part2_1.Part2Select</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Part2_1Select</servlet-name>
+        <url-pattern>/part2_1select</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>Part2_2</servlet-name>
+        <servlet-class>ua.nure.veretelnyk.practice9.part2_2.Part2Form</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Part2_2</servlet-name>
+        <url-pattern>/part2_2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Part2_2Select</servlet-name>
+        <servlet-class>ua.nure.veretelnyk.practice9.part2_2.Part2Select</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Part2_2Select</servlet-name>
+        <url-pattern>/part2_2select</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>Part2_3</servlet-name>
+        <servlet-class>ua.nure.veretelnyk.practice9.part2_3.Part2Form</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Part2_3</servlet-name>
+        <url-pattern>/part2_3</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Part2_3Select</servlet-name>
+        <servlet-class>ua.nure.veretelnyk.practice9.part2_3.Part2Select</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Part2_3Select</servlet-name>
+        <url-pattern>/part2_3select</url-pattern>
+    </servlet-mapping>
+    
+    
+    <context-param>
+        <param-name>list</param-name>
+        <param-value>Football Biathlon Basketball</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>ua.nure.veretelnyk.practice9.Part2Listener</listener-class>
+    </listener>
+
+</web-app>
