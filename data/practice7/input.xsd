@@ -79,6 +79,9 @@
 </xsd:schema>
 
 <!--
+
+xjc -d C:\Users\Dmitry\Documents\GitHub\EpamPractice\src\ua\nure\veretelnyk\practice7 -p com.blackwell C:\Users\Dmitry\Documents\GitHub\EpamPractice\data\practice7
+
 Check with and without tns
 
 bin/xjc

@@ -10,7 +10,7 @@ public class CalcServlet extends HttpServlet {
     private static final String MINUS = "minus";
     private static final String PLUS = "plus";
     private static final String X = "x";
-    private static final String Y = "Y";
+    private static final String Y = "y";
     private static final String OPERATION = "op";
 
     @Override

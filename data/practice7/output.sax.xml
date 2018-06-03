@@ -1,14 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--  Input XML document. This XML is valid against input.xsd XML schema-->
-
-<guns:Guns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:guns="http://nure.ua/veretelnyk/GunsPractice/entity"
-        xsi:schemaLocation="http://nure.ua/veretelnyk/GunsPractice/entity input.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Guns>
     <Gun>
         <Model>AK-47</Model>
         <Handy>two-hand</Handy>
         <Origin>Soviet Union</Origin>
-
+        <Material>Metal</Material>
         <TTC>
             <Distance>
                 <long>1500</long>
@@ -17,15 +13,12 @@
             <Collar>true</Collar>
             <Optics>false</Optics>
         </TTC>
-
-        <Material>Metal</Material>
     </Gun>
-
     <Gun>
         <Model>M16</Model>
         <Handy>two-hand</Handy>
         <Origin>USA</Origin>
-
+        <Material>Metal</Material>
         <TTC>
             <Distance>
                 <middle>800</middle>
@@ -34,15 +27,12 @@
             <Collar>true</Collar>
             <Optics>false</Optics>
         </TTC>
-
-        <Material>Metal</Material>
     </Gun>
-
     <Gun>
         <Model>Barrett M82</Model>
         <Handy>two-hand</Handy>
         <Origin>USA</Origin>
-
+        <Material>Metal</Material>
         <TTC>
             <Distance>
                 <long>2000</long>
@@ -51,10 +41,5 @@
             <Collar>true</Collar>
             <Optics>true</Optics>
         </TTC>
-
-        <Material>Metal</Material>
     </Gun>
-
-
-
-</guns:Guns>
+</Guns>
