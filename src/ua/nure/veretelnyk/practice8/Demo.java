@@ -15,6 +15,12 @@ public class Demo {
         }
     }
 
+
+
+    //////////////////////////////////////////////////////////////////////
+    // run ONLY after resetting db !!!
+    //////////////////////////////////////////////////////////////////////
+
     public static void main(String[] args) throws DBException {
         // users  ==> [ivanov]
         // groups ==> [teamA]
@@ -29,7 +35,7 @@ public class Demo {
 
         System.out.println("===========================");
 
-//        // Part 2
+        // Part 2
         dbManager.insertGroup(Group.createGroup("teamB"));
         dbManager.insertGroup(Group.createGroup("teamC"));
         printList(dbManager.findAllGroups());
@@ -51,16 +57,29 @@ public class Demo {
         dbManager.setGroupsForUser(userPetrov, teamA, teamB);
         dbManager.setGroupsForUser(userObama, teamA, teamB, teamC);
 
-//        for (User user : dbManager.findAllUsers()) {
-//            printList(dbManager.getUserGroups(user));
-//            System.out.println("~~~~~");
-//        }
+        for (User user : dbManager.findAllUsers()) {
+            System.out.println(user.getLogin());
+            printList(dbManager.getUsersGroup(user));
+            System.out.println("~~~~~");
+        }
+        // teamA
+        // teamA teamB
+        // teamA teamB teamC
 
+        System.out.println("===========================");
+
+        // Part 4
+
+        // on delete cascade!
+        dbManager.deleteGroup(teamA);
+        System.out.println("group deleted");
+
+        // Part 5
+        teamC.setName("teamX");
+        dbManager.updateGroup(teamC);
+
+        // Part 6
+        printList(dbManager.findAllGroups());
+        // groups ==> [teamB, teamX]
     }
 }
-
-//    Создать и реализовать соответствующие типы таким образом,
-//    чтобы при запуске класса Demo отрабатывала соответствующая функциональность.
-//
-//    Метод DBManager#insertGroup должен модифицировать поле id объекта Group.
-//    Метод DBManager#findAllGroups возвращает объект java.util.List<Group>.
