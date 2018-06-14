@@ -5,7 +5,6 @@ import ua.nure.veretelnyk.practice8.entity.DBException;
 import ua.nure.veretelnyk.practice8.entity.Group;
 import ua.nure.veretelnyk.practice8.entity.User;
 
-import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

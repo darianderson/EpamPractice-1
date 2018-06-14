@@ -1,6 +1,6 @@
-# DROP DATABASE practice8;
-# CREATE DATABASE practice8;
-# USE practice8;
+#  DROP DATABASE practice8;
+#  CREATE DATABASE practice8;
+#  USE practice8;
 
 DROP TABLE IF EXISTS users_groups;
 DROP TABLE IF EXISTS users;

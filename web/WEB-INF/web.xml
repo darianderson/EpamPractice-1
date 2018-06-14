@@ -92,5 +92,16 @@
         <servlet-name>FormServlet</servlet-name>
         <url-pattern>/form</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>auth</servlet-name>
+        <servlet-class>ua.nure.veretelnyk.practice10.Auth</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>auth</servlet-name>
+        <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
+
+    
 </web-app>
