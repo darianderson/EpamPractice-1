@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Guns>
+    <Gun>
+        <Model>AK-47</Model>
+        <Handy>two-hand</Handy>
+        <Origin>Soviet Union</Origin>
+        <Material>Metal</Material>
+        <TTC>
+            <Distance>
+                <long>1500</long>
+            </Distance>
+            <SightingRange>800</SightingRange>
+            <Collar>true</Collar>
+            <Optics>false</Optics>
+        </TTC>
+    </Gun>
+    <Gun>
+        <Model>M16</Model>
+        <Handy>two-hand</Handy>
+        <Origin>USA</Origin>
+        <Material>Metal</Material>
+        <TTC>
+            <Distance>
+                <middle>800</middle>
+            </Distance>
+            <SightingRange>600</SightingRange>
+            <Collar>true</Collar>
+            <Optics>false</Optics>
+        </TTC>
+    </Gun>
+    <Gun>
+        <Model>Barrett M82</Model>
+        <Handy>two-hand</Handy>
+        <Origin>USA</Origin>
+        <Material>Metal</Material>
+        <TTC>
+            <Distance>
+                <long>2000</long>
+            </Distance>
+            <SightingRange>1500</SightingRange>
+            <Collar>true</Collar>
+            <Optics>true</Optics>
+        </TTC>
+    </Gun>
+</Guns>
