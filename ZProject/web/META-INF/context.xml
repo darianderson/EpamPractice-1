@@ -1,0 +1,13 @@
+<Context>
+
+  <Resource name="jdbc/railways"
+  			auth="Container" 
+  			type="javax.sql.DataSource"
+			maxActive="100" maxIdle="30" maxWait="10000"
+			username="blackwell" password="salt"
+			driverClassName="com.mysql.jdbc.Driver"
+			defaultAutoCommit="false"
+			defaultTransactionIsolation="READ_COMMITTED"
+			url="jdbc:mysql://localhost/railways"/>
+			
+</Context>

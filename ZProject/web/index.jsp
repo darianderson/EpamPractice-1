@@ -11,6 +11,18 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+
+  <div align="center">
+    <p>${sessionScope.login}</p>
+    <form action="/controller" method="post">
+      <label>
+        login: <input type="text" name="login">
+      </label>
+      <label>
+        password <input type="password" name="pass">
+      </label>
+      <input type="submit">
+    </form>
+  </div>
   </body>
 </html>
