@@ -1,6 +1,8 @@
 package ua.nure.veretelnyk.db;
 
+import ua.nure.veretelnyk.db.entity.Country;
 import ua.nure.veretelnyk.db.entity.Role;
+import ua.nure.veretelnyk.db.entity.Station;
 import ua.nure.veretelnyk.db.entity.User;
 
 import javax.naming.Context;
@@ -11,6 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBManager {
     private DataSource dataSource;
@@ -108,6 +112,66 @@ public class DBManager {
         return user;
     }
 
+
+
+
+    public List<Country> getCountries(){
+        List<Country> countries = new ArrayList<>();
+        PreparedStatement statement;
+        ResultSet rs;
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM countries");
+            rs = statement.executeQuery();
+
+
+            while (rs.next()){
+                Country country = new Country();
+
+                country.setId(rs.getInt("id"));
+                country.setFullName(rs.getString("full_name"));
+                country.setShortName(rs.getString("short_name"));
+
+                countries.add(country);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countries;
+    }
+
+
+    public List<Station> getStations(){
+        List<Station> stations = new ArrayList<>();
+        PreparedStatement statement;
+        ResultSet rs;
+
+        List<Country> countries = getCountries();
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM stations");
+            rs = statement.executeQuery();
+
+            while (rs.next()){
+                Station station = new Station();
+
+                station.setId(rs.getInt("id"));
+                station.setName(rs.getString("name"));
+                int countryId = rs.getInt("country_id");
+                for(Country country : countries)
+                    if(country.getId() == countryId) {
+                        station.setCountry(country);
+                        break;
+                    }
+                stations.add(station);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return stations;
+    }
 
 
 

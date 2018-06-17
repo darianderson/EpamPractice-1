@@ -59,7 +59,7 @@ CREATE TABLE stations(
 ) ENGINE=InnoDB;
 
 INSERT INTO stations (name, country_id)
-  VALUES ('Arc de Triomf', 724), ('Muntaner', 724), ('Sants', 724), ('Sarrià', 724), ('Arc de Triomf station', 724),
+  VALUES ('Arc de Triomf', 724), ('Muntaner', 724), ('Sants', 724), ('Sarrià', 724), ('Artemis', 724),
   ('Abbey Wood', 826), ('Lambeg', 826), ('Old Hill', 826), ('Roby', 826), ('Roose', 826),
   ('Arna', 578), ('Dale', 578), ('Myrdal', 578), ('Urdland', 578);
 
