@@ -48,11 +48,17 @@ public class DBManager {
     public User getUser(String login, String pass){
         PreparedStatement statement;
         ResultSet rs;
-        System.out.println("Extracting user: "+login+" "+pass);
+
         try (Connection con = getConnection()){
-            statement = con.prepareStatement("SELECT * FROM users WHERE login=? AND password=?");
-            statement.setString(1, login);
-            statement.setString(2, pass);
+            if("".equals(pass)) {
+                statement = con.prepareStatement("SELECT * FROM users WHERE login=?");
+                statement.setString(1, login);
+            }
+            else{
+                statement = con.prepareStatement("SELECT * FROM users WHERE login=? AND password=?");
+                statement.setString(1, login);
+                statement.setString(2, pass);
+            }
 
             rs = statement.executeQuery();
 
@@ -65,11 +71,31 @@ public class DBManager {
         return null;
     }
 
+    public User getUser(String login){
+        return getUser(login, "");
+    }
+
+    public boolean addUser(String login, String pass){
+        PreparedStatement statement;
+
+        try(Connection con = getConnection()){
+            statement = con.prepareStatement("INSERT INTO users(login, password) VALUE (?,?)");
+            statement.setString(1, login);
+            statement.setString(2, pass);
+
+            statement.executeUpdate();
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     private User extractUser(ResultSet rs){
         User user = User.create();
         try {
-            System.out.println(rs.getString("login"));
             user.setId(rs.getInt("id"));
             user.setLogin(rs.getString("login"));
             user.setName(rs.getString("name"));

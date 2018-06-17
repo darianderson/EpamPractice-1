@@ -14,6 +14,7 @@ public class CommandContainer {
         commands.put("login", new LoginCmd());
         commands.put("logout", new LogoutCmd());
         commands.put("error", new ErrorCmd());
+        commands.put("register", new RegistrCmd());
 
         LOG.debug("CommandContainer initialized.");
     }

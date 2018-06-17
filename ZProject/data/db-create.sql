@@ -153,7 +153,7 @@ CREATE TABLE users(
   password VARCHAR(32) NOT NULL,
   name VARCHAR(32),
   surname VARCHAR(32),
-  role_id INTEGER UNSIGNED NOT NULL,
+  role_id INTEGER UNSIGNED NOT NULL DEFAULT 2,
 
   FOREIGN KEY (role_id) REFERENCES roles(id)
 ) ENGINE=InnoDB;

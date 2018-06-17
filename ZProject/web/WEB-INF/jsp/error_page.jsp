@@ -4,7 +4,7 @@
 
 <html>
     <c:set var="title" value="error"/>
-    <%@ include file="/WEB-INF/jspf/head.jspf"%>
+    <%@ include file="/WEB-INF/jspf/links.jspf"%>
 <body>
 
     <h1 align="center">${requestScope.errorMessage}</h1>

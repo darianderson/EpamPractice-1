@@ -1,44 +1,44 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-
 <html>
 
-  <%@ include file="WEB-INF/jspf/head.jspf" %>
+  <head>
+      <title>Sign In</title>
+      <%@ include file="/WEB-INF/jspf/links.jspf" %>
+      <link rel="stylesheet" type="text/css" media="screen" href="style/form.css">
+
+      <script type="text/javascript" src="script/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="script/script.js"></script>
+  </head>
+
+
   <body>
 
-  <div id="wrap" class="container">
-      <c:set var="title" value="login"/>
-    <%@ include file="WEB-INF/jspf/header.jspf" %>
-
-    <div id="content" class="column span-15 last">
-
-    </div>
-  </div>
-
-  <c:choose>
-      <c:when test="${sessionScope.login == null}">
-          <div align="center" style="margin-top: 300px;">
-            <form action="controller" method="post">
-              <input type="hidden" name="command" value="login"/>
-
-              <label>
-                login: <input type="text" name="login">
-              </label><br>
-
-              <label>
-                password: <input type="password" name="pass">
-              </label> <br>
-
-              <input type="submit">
-            </form>
+      <div class="login-page">
+          <h1>Railway Express</h1>
+          <div class="form">
+              <p id="info">${requestScope.signinError}</p>
+              <form action="controller" method="post"  class="register-form">
+                  <input type="hidden" name="command" value="register"/>
+                  <input type="text" placeholder="username" name="login" required="required"/>
+                  <input type="password" placeholder="password" name="pass" required="required" />
+                  <input type="password" placeholder="repeat password" name="pass_repeat" required="required"/>
+                  <input type="submit" class="button" value="create"/>
+                  <p class="message">Already registered? <a onclick="onCreateClick()" href="#">Sign In</a></p>
+              </form>
+              <form action="controller" method="post" class="login-form">
+                  <input type="hidden" name="command" value="login"/>
+                  <input type="text" placeholder="username" name="login" required="required"/>
+                  <input type="password" placeholder="password" name="pass" required="required"/>
+                  <input type="submit" class="button" value="login"/>
+                  <p class="message">Not registered? <a onclick="onCreateClick()" href="#">Create an account</a></p>
+              </form>
+              <c:if test="${requestScope.isRegistrLoaded == true}">
+                  <script>$('form').animate({height: "toggle", opacity: "toggle"}, 1);</script>
+              </c:if>
           </div>
-      </c:when>
-      <c:otherwise>
-          <h1>Main content</h1>
-      </c:otherwise>
-  </c:choose>
-
+      </div>
 
   </body>
 </html>

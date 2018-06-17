@@ -1,5 +1,6 @@
 package ua.nure.veretelnyk.web;
 
+import org.apache.log4j.Logger;
 import ua.nure.veretelnyk.Path;
 import ua.nure.veretelnyk.db.DBManager;
 import ua.nure.veretelnyk.db.entity.User;
@@ -16,21 +17,25 @@ import java.io.IOException;
 
 public class Controller extends HttpServlet {
 
+    private static final Logger LOG = Logger.getLogger(Controller.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        LOG.debug("doGet request in Controller");
         process(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("hahah");
+        LOG.debug("doPost request in Controller");
         process(req, resp);
     }
 
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String cmdName = req.getParameter("command");
-        System.out.println(cmdName);
+        LOG.debug("Command name: " + cmdName);
+
         Command cmd = CommandContainer.get(cmdName);
 
 
@@ -39,8 +44,10 @@ public class Controller extends HttpServlet {
             forward = cmd.execute(req, resp);
         } catch (AppException e) {
             e.printStackTrace();
+            LOG.error("Getting exception from executing command.");
         }
-        System.out.println(forward);
+
+        LOG.debug("Forward to " + forward);
         req.getRequestDispatcher(forward).forward(req, resp);
     }
 
