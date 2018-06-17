@@ -1,0 +1,29 @@
+<div id="header" class="column span-24 last">
+    <h1 class="column span-8 last">Railway express</h1>
+    <div id="nav" class="column span-16 last">
+        <ul>
+            <c:if test="${sessionScope.role == 'admin'}">
+                <li class="li_admin"><a title="admin" href="#">Admin </a> </li>
+            </c:if>
+            <li class="li_home"><a title="home" href="#">Home</a> </li>
+            <c:choose>
+                <c:when test="${sessionScope.login == null}">
+                    <li><a href="index.jsp"> login </a> </li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="controller?command=logout"> ${sessionScope.login} (logout)</a> </li>
+                </c:otherwise>
+            </c:choose>
+        </ul>
+    </div>
+
+    <div id="logo" class="column span-24 last">
+        <img src="img/logo.png" id="top_menu_img">
+    </div>
+</div>
+
+<!--
+#231f20
+#0065a4
+#d1d5d8
+-->

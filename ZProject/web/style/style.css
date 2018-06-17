@@ -1,0 +1,99 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #d1d5d8 url("../img/header_bg.jpg") repeat-x top;
+}
+p, ul, li, h1,h2,h3,h4{
+    margin: 0;
+}
+h3 {
+    margin: 0 0 20px 0;
+    padding: 0 0 5px 0;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+ul{
+    list-style-type:  none;
+}
+#nav{
+    height: 50px;
+}
+#nav ul{
+    float: right;
+}
+#nav ul li{
+    float: left;
+    padding: 15px;
+}
+#nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 1.2em;
+}
+#nav ul li.active, #nav ul li:hover{
+    background: #231f20;
+}
+#logo img{
+    float: left;
+    height: 200px;
+}
+#header h1{
+    padding:10px 0 0 0;
+    font-size: x-large;
+    font-weight: bold;
+    color: #ffffff;
+}
+#header h2{
+    margin: 8px 0 0 0;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+#header h2 em{
+    color: #cccccc;
+}
+#content, #sidebar{
+    margin: 40px 0 20px 0;
+}
+#content h4{
+    font-weight: bold;
+    font-size: 1.4em;
+}
+#content h5{
+    margin: 0;
+    font-weight: normal;
+    font-size: 1.3em;
+}
+#content li p{
+    margin: 0 0 10px 0;
+}
+#content table a{
+    text-decoration: none;
+}
+#content table a:hover{
+    background: #ffd324;
+    text-decoration: underline;
+}
+#sidebar{
+    margin-left: 40px;
+}
+#sidebar p, #content p, label {
+    margin: 0 0  10px 0;
+    font-size: 1.3em;
+}
+#sidebar h3{
+    border: 0;
+}
+#footer{
+    border-top: 5px solid #928977;
+    background: #a9a294;
+}
+#footer p{
+    margin: 0 auto;
+    padding: 10px;
+    width: 950px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}

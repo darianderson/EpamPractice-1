@@ -1,18 +1,29 @@
 
---CREATE DATEBASE railways;
---GRANT ALL ON railways.* TO 'blackwell'@'localhost' IDENTIFIED BY 'salt';
---use railways;
+##CREATE DATABASE railways;
+##GRANT ALL ON railways.* TO 'blackwell'@'localhost' IDENTIFIED BY 'salt';
+##use railways;
 
-------------------------------------------------------
--- trains and there models
-------------------------------------------------------
+DROP TABLE IF EXISTS tickets;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS train_carriage;
+DROP TABLE IF EXISTS carriages;
+DROP TABLE IF EXISTS carriage_class;
+DROP TABLE IF EXISTS carriage_type;
+DROP TABLE IF EXISTS routes;
+DROP TABLE IF EXISTS stations;
+DROP TABLE IF EXISTS countries;
+
+######################################################
+## trains and there models
+######################################################
 CREATE TABLE models(
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT KEY,
   model VARCHAR(32)
 ) ENGINE=InnoDB;
 
 INSERT INTO models (model)
-  VALUES ('Hyundai Rotem'), ('Bombardier AVE S-102'), ('Taggart comet');
+  VALUES ('Hyundai Rotem'), ('Bombardier AVE S#102'), ('Taggart comet');
 
 
 CREATE TABLE trains(
@@ -27,9 +38,9 @@ INSERT INTO trains (model_id, since)
   VALUES (1, '20120618'), (2, '20060123'), (3, '20170305'), (2, '20150223');
 
 
-------------------------------------------------------
--- stations and routes
-------------------------------------------------------
+######################################################
+## stations and routes
+######################################################
 CREATE TABLE countries(
   id INTEGER UNSIGNED NOT NULL UNIQUE PRIMARY KEY,
   full_name VARCHAR(32),
@@ -72,9 +83,9 @@ INSERT INTO routes VALUES
   (784, 4, 9, '20180710 09:57:00 AM', '20180710 10:34:00 AM');
 
 
-------------------------------------------------------
--- carriage
-------------------------------------------------------
+######################################################
+## carriage
+######################################################
 
 CREATE TABLE carriage_type(
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT KEY,
@@ -125,9 +136,9 @@ INSERT INTO train_carriage VALUES
   (4, 1, 1, 20), (4, 1, 1, 20), (4, 3, 4, 50), (4, 2, 5, 35);
 
 
-------------------------------------------------------
--- users
-------------------------------------------------------
+######################################################
+## users
+######################################################
 
 
 CREATE TABLE roles(
@@ -147,7 +158,7 @@ CREATE TABLE users(
   FOREIGN KEY (role_id) REFERENCES roles(id)
 ) ENGINE=InnoDB;
 
-INSERT INTO users VALUES (DEFAULT, 'bombardier', 'canadarules', 'Joseph-Armand', 'Bombardier', 1),
+INSERT INTO users VALUES (DEFAULT, 'bombardier', 'canadarules', 'Joseph#Armand', 'Bombardier', 1),
   (DEFAULT, 'preston', 'prestonpass', 'Jeffrey', 'Preston', 2);
 
 
@@ -162,3 +173,14 @@ CREATE TABLE tickets(
 
 INSERT INTO tickets VALUE (2, 345, 2, 32);
 
+
+SELECT * FROM countries;
+SELECT * FROM stations;
+SELECT * FROM routes;
+SELECT * FROM carriage_type;
+SELECT * FROM carriage_class;
+SELECT * FROM carriages;
+SELECT * FROM train_carriage;
+SELECT * FROM roles;
+SELECT * FROM users;
+SELECT * FROM tickets;

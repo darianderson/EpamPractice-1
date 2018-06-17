@@ -1,28 +1,44 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Dmitry
-  Date: 6/16/2018
-  Time: 3:40 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
+
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
+
+  <%@ include file="WEB-INF/jspf/head.jspf" %>
   <body>
 
-  <div align="center">
-    <p>${sessionScope.login}</p>
-    <form action="/controller" method="post">
-      <label>
-        login: <input type="text" name="login">
-      </label>
-      <label>
-        password <input type="password" name="pass">
-      </label>
-      <input type="submit">
-    </form>
+  <div id="wrap" class="container">
+      <c:set var="title" value="login"/>
+    <%@ include file="WEB-INF/jspf/header.jspf" %>
+
+    <div id="content" class="column span-15 last">
+
+    </div>
   </div>
+
+  <c:choose>
+      <c:when test="${sessionScope.login == null}">
+          <div align="center" style="margin-top: 300px;">
+            <form action="controller" method="post">
+              <input type="hidden" name="command" value="login"/>
+
+              <label>
+                login: <input type="text" name="login">
+              </label><br>
+
+              <label>
+                password: <input type="password" name="pass">
+              </label> <br>
+
+              <input type="submit">
+            </form>
+          </div>
+      </c:when>
+      <c:otherwise>
+          <h1>Main content</h1>
+      </c:otherwise>
+  </c:choose>
+
+
   </body>
 </html>

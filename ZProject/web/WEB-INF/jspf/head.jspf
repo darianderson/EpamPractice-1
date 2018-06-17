@@ -1,0 +1,10 @@
+<head>
+    <title>${title}</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style/screen.css">
+    <!--[if IE]>
+    <link rel="stylesheet" href="style/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="style/style.css">
+    <link rel="shortcut icon" href="img/traincon.png" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
