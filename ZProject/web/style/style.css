@@ -2,17 +2,23 @@
     font-family: 'Roboto';
     src: url('../fonts/Roboto-Light.ttf');
 }
-
+.form,
+.form .sub,
+#body,
+#end,
+#start,
+#submit {
+    font-family: "Roboto", sans-serif;
+}
 #search_form{
     width: 97%;
-    background: #ffffff;
+    background: var(--content-background);
     margin-top: 30px;
     padding: 10px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 #start, #end{
-    font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
     width: 35%;
@@ -24,16 +30,15 @@
 }
 
 #submit{
-    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #0065a4;
+    background: var(--main-background);
     width: 15%;
     border: 0;
     padding: 15px;
     margin: 15px;
     float: right;
-    color: #FFFFFF;
+    color: var(--content-background);
     font-size: 14px;
     cursor: pointer;
 }

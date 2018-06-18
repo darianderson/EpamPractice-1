@@ -8,10 +8,10 @@ body {
     padding: 0;
     background-image: url("../img/header_bg.jpg");
 
-    background: -webkit-linear-gradient(right, #0053a4, #0042a4);
-    background: -moz-linear-gradient(right, #0053a4, #0042a4);
-    background: -o-linear-gradient(right, #0053a4, #0042a4);
-    background: linear-gradient(to left, #0053a4, #0042a4);
+    background: -webkit-linear-gradient(right, var(--main-background), var(--main-background));
+    background: -moz-linear-gradient(right, var(--main-background), var(--main-background));
+    background: -o-linear-gradient(right, var(--main-background), var(--main-background));
+    background: linear-gradient(to left, var(--main-background), var(--main-background));
     font-family: "Dosis", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -60,7 +60,7 @@ ul{
     padding:15px 0 0 0;
     font-size: x-large;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--content-background);
 }
 #header h2{
     margin: 8px 0 0 0;
