@@ -3,8 +3,10 @@
 
 
 <html>
-    <c:set var="title" value="error"/>
-    <%@ include file="/WEB-INF/jspf/links.jspf"%>
+    <head>
+        <title>Error</title>
+        <%@ include file="/WEB-INF/jspf/links.jspf"%>
+    </head>
 <body>
 
     <h1 align="center">${requestScope.errorMessage}</h1>

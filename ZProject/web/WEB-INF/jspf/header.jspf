@@ -3,13 +3,13 @@
     <div id="nav" class="column span-16 last">
         <ul>
             <c:if test="${sessionScope.userRoleId == 1}">
-                <li class="li_admin"><a title="admin" href="#">Admin </a> </li>
+                <li class="li_admin"><a title="admin" href="controller?command=get_page&page=admin">Admin </a> </li>
             </c:if>
-            <li class="li_home"><a title="home" href="#">Home</a> </li>
-            <li class="li_home"><a title="home" href="#">Settings</a> </li>
+            <li class="li_home"><a title="home" href="controller?command=get_page&page=index">Home</a> </li>
+            <li class="li_home"><a title="home" href="controller?command=get_page&page=settings">Settings</a> </li>
             <c:choose>
                 <c:when test="${sessionScope.login == null}">
-                    <li><a href="index.jsp"> login </a> </li>
+                    <li><a href="controller?command=get_page&page=login"> login </a> </li>
                 </c:when>
                 <c:otherwise>
                     <li><a href="controller?command=logout"> ${sessionScope.login} (logout)</a> </li>

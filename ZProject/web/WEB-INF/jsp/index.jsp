@@ -13,7 +13,6 @@
 <body>
 
 <div id="wrap" class="container">
-    <c:set var="title" value="login"/>
     <%@ include file="/WEB-INF/jspf/header.jspf" %>
 
     <div id="content" class="column span-24 last">
@@ -39,10 +38,11 @@
             } );
         </script>
 
-        <form id="search_form">
-            <input type="text" name="start" id="start" placeholder="start station">
-            <input type="text" name="end" id="end" placeholder="end station">
-            <input type="submit" id="submit">
+        <form id="search_form" action="/controller" method="post">
+            <input type="hidden" name="command" value="ticket_search"/>
+            <input type="text" name="from" id="start" placeholder="from">
+            <input type="text" name="to" id="end" placeholder="to">
+            <input type="submit" id="submit" value="search">
         </form>
 
     </div>

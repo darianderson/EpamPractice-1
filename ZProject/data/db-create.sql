@@ -68,19 +68,19 @@ CREATE TABLE routes(
   id INTEGER UNSIGNED NOT NULL,
   train_id INTEGER UNSIGNED NOT NULL,
   station_id INTEGER UNSIGNED NOT NULL,
-  arrival DATE,
-  departure DATE,
+  arrival DATETIME,
+  departure DATETIME,
 
   FOREIGN KEY (station_id) REFERENCES stations(id),
   FOREIGN KEY (train_id) REFERENCES trains(id)
 ) ENGINE=InnoDB;
 
 INSERT INTO routes VALUES
-  (345, 2, 1, '20180709 10:35:00 AM', '20180709 10:55:00 AM'), (345, 2, 4, '20180709 11:48:00 AM', '20180709 11:58:00 AM'),
-  (345, 2, 2, '20180709 02:18:00 PM', '20180709 02:25:00 AM'), (345, 2, 5, '20180709 04:48:00 PM', '20180709 04:35:00 AM'),
-  (784, 4, 6, '20180710 02:00:00 AM', '20180710 02:10:00 AM'), (784, 4, 8, '20180710 04:39:00 AM', '20180710 04:50:00 AM'),
-  (784, 4, 10, '20180710 05:21:00 AM', '20180710 06:00:00 AM'), (784, 4, 7, '20180710 08:00:00 AM', '20180710 08:12:00 AM'),
-  (784, 4, 9, '20180710 09:57:00 AM', '20180710 10:34:00 AM');
+  (345, 2, 1, '2018-07-09 10:35:00', '2018-07-09 10:55:00'), (345, 2, 4, '2018-07-09 11:48:00', '2018-07-09 11:58:00'),
+  (345, 2, 2, '2018-07-09 14:18:00', '2018-07-09 14:25:00'), (345, 2, 5, '2018-07-09 16:48:00', '2018-07-09 16:35:00'),
+  (784, 4, 6, '2018-07-10 02:00:00', '2018-07-10 02:10:00'), (784, 4, 8, '2018-07-10 04:39:00', '2018-07-10 04:50:00'),
+  (784, 4, 10, '2018-07-10 05:21:00', '2018-07-10 06:00:00'), (784, 4, 7, '2018-07-10 08:00:00', '2018-07-10 08:12:00'),
+  (784, 4, 9, '2018-07-10 09:57:00', '2018-07-10 10:34:00');
 
 
 ######################################################
@@ -158,7 +158,7 @@ CREATE TABLE users(
   FOREIGN KEY (role_id) REFERENCES roles(id)
 ) ENGINE=InnoDB;
 
-INSERT INTO users VALUES (DEFAULT, 'bombardier', 'canadarules', 'Joseph#Armand', 'Bombardier', 1),
+INSERT INTO users VALUES (DEFAULT, 'bombardier', 'canadarules', 'Joseph-Armand', 'Bombardier', 1),
   (DEFAULT, 'preston', 'prestonpass', 'Jeffrey', 'Preston', 2);
 
 

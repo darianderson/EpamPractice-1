@@ -16,6 +16,8 @@ public class CommandContainer {
         commands.put("error", new ErrorCmd());
         commands.put("register", new RegistrCmd());
         commands.put("get_stations", new GetStationsCmd());
+        commands.put("ticket_search", new TicketSearchCmd());
+        commands.put("get_page", new GetPageCmd());
 
         LOG.debug("CommandContainer initialized.");
     }
