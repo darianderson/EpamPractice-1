@@ -32,13 +32,13 @@
                 $( "#start" ).autocomplete({
                     source: stations
                 });
-                $( "#end" ).autocomplete({
+                $( "#end" ).autocomplete({;
                     source: stations
                 });
             } );
         </script>
 
-        <form id="search_form" action="/controller" method="post">
+        <form id="search_form" action="/controller?command=ticket_search" method="post">
             <input type="hidden" name="command" value="ticket_search"/>
             <input type="text" name="from" id="start" placeholder="from">
             <input type="text" name="to" id="end" placeholder="to">

@@ -1,9 +1,7 @@
 package ua.nure.veretelnyk.db;
 
-import ua.nure.veretelnyk.db.entity.Country;
-import ua.nure.veretelnyk.db.entity.Role;
-import ua.nure.veretelnyk.db.entity.Station;
-import ua.nure.veretelnyk.db.entity.User;
+import ua.nure.veretelnyk.db.entity.*;
+import ua.nure.veretelnyk.exception.AppException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -13,7 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DBManager {
@@ -96,7 +98,6 @@ public class DBManager {
         return false;
     }
 
-
     private User extractUser(ResultSet rs){
         User user = User.create();
         try {
@@ -113,7 +114,35 @@ public class DBManager {
     }
 
 
+    public Country getCountry(int id){
+        PreparedStatement statement;
+        ResultSet rs;
 
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM countries WHERE id=?");
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
+
+
+            if (rs.next()){
+                return extractCountry(rs);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Country extractCountry(ResultSet rs) throws SQLException {
+        Country country = new Country();
+
+        country.setId(rs.getInt("id"));
+        country.setFullName(rs.getString("full_name"));
+        country.setShortName(rs.getString("short_name"));
+
+        return country;
+    }
 
     public List<Country> getCountries(){
         List<Country> countries = new ArrayList<>();
@@ -124,16 +153,8 @@ public class DBManager {
             statement = con.prepareStatement("SELECT * FROM countries");
             rs = statement.executeQuery();
 
-
-            while (rs.next()){
-                Country country = new Country();
-
-                country.setId(rs.getInt("id"));
-                country.setFullName(rs.getString("full_name"));
-                country.setShortName(rs.getString("short_name"));
-
-                countries.add(country);
-            }
+            while (rs.next())
+                countries.add(extractCountry(rs));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -147,24 +168,13 @@ public class DBManager {
         PreparedStatement statement;
         ResultSet rs;
 
-        List<Country> countries = getCountries();
         try (Connection con = getConnection()){
             statement = con.prepareStatement("SELECT * FROM stations");
             rs = statement.executeQuery();
 
-            while (rs.next()){
-                Station station = new Station();
+            while (rs.next())
+                stations.add(extractStation(rs));
 
-                station.setId(rs.getInt("id"));
-                station.setName(rs.getString("name"));
-                int countryId = rs.getInt("country_id");
-                for(Country country : countries)
-                    if(country.getId() == countryId) {
-                        station.setCountry(country);
-                        break;
-                    }
-                stations.add(station);
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -173,6 +183,189 @@ public class DBManager {
         return stations;
     }
 
+    public Station getStation(int id){
+        PreparedStatement statement;
+        ResultSet rs;
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM stations WHERE id=?");
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
 
+            if (rs.next()){
+                return extractStation(rs);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private Station extractStation(ResultSet rs) throws SQLException {
+        Station station = new Station();
+
+        station.setId(rs.getInt("id"));
+        station.setName(rs.getString("name"));
+        int countryId = rs.getInt("country_id");
+        station.setCountry(getCountry(countryId));
+
+        return station;
+    }
+
+
+
+    private Route getRouteFromList(List<Route> routeList, int id){
+        for(Route r : routeList)
+            if (r.getId() == id)
+                return r;
+        return null;
+    }
+
+    public Model getModel(int id){
+        PreparedStatement statement;
+        ResultSet rs;
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM models WHERE id=?");
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
+
+            if(rs.next()){
+                Model m = new Model();
+                m.setId(rs.getInt("id"));
+                m.setModel(rs.getString("model"));
+                return m;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+    public Train getTrain(int id){
+        PreparedStatement statement;
+        ResultSet rs;
+
+        List<Country> countries = getCountries();
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM trains WHERE id=?");
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
+
+            if (rs.next()) {
+                Train train = new Train();
+                train.setId(rs.getInt("id"));
+                train.setModel(getModel(rs.getInt("model_id")));
+                return train;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public List<Route> getRoutes(){
+        List<Route> routes = new ArrayList<>();
+        PreparedStatement statement;
+        ResultSet rs;
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM routes");
+            rs = statement.executeQuery();
+
+            while (rs.next()){
+                Route route = getRouteFromList(routes, rs.getInt("id"));
+                if(route == null) {
+                    route = new Route();
+                    route.setId(rs.getInt("id"));
+                    route.setTrain(getTrain(rs.getInt("train_id")));
+                    routes.add(route);
+                }
+
+                addStationForRoute(route, rs);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return routes;
+    }
+
+
+
+    public Route getRoute(int id){
+        Route route = new Route();
+        PreparedStatement statement;
+        ResultSet rs;
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM routes WHERE id=?");
+            statement.setInt(1,id);
+            rs = statement.executeQuery();
+
+            if(rs.next()) {
+                route.setId(id);
+                route.setTrain(getTrain(rs.getInt("train_id")));
+                addStationForRoute(route, rs);
+            }
+
+            while (rs.next())
+                addStationForRoute(route, rs);
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return route;
+    }
+
+    private void addStationForRoute(Route route, ResultSet rs) throws SQLException, ParseException {
+        Station station = getStation(rs.getInt("station_id"));
+        DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
+        Date arrival = df.parse(rs.getString("arrival"));
+        Date departure = df.parse(rs.getString("departure"));
+        route.addStation(station, arrival, departure);
+    }
+
+
+
+
+    public List<Ticket> getTicketsForUser(User user){
+        List<Ticket> tickets = new ArrayList<>();
+        PreparedStatement statement;
+        ResultSet rs;
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM tickets WHERE user_id=?");
+            statement.setInt(1, user.getId());
+            rs = statement.executeQuery();
+
+            while(rs.next()){
+                Ticket ticket = new Ticket();
+
+                ticket.setUser(user);
+                ticket.setRoute(getRoute(rs.getInt("route_id")));
+                ticket.setCarriageNo(rs.getInt("carriage_no"));
+                ticket.setPlaceNo(rs.getInt("place"));
+
+                tickets.add(ticket);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tickets;
+    }
 
 }
