@@ -2,20 +2,40 @@
     font-family: 'Roboto';
     src: url('../fonts/Roboto-Light.ttf');
 }
-
-#search_form{
-    width: 97%;
-    background: #ffffff;
-    margin-top: 30px;
-    padding: 10px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+.form,
+.form .sub,
+#body,
+#city,
+#end,
+#land,
+#station-name,
+#start,
+#from-station, #to-station, #duration,
+.submit {
+    font-family: "Roboto", sans-serif;
+}
+#search_form {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+                0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-#start, #end{
-    font-family: "Roboto", sans-serif;
+#search_form,.add_form{
+    width: 97%;
+    background: var(--content-background);
+    margin-top: 30px;
+    padding: 10px;
+}
+#start, #end {
+    width: 35%;
+}
+
+#city, #land, #station-name, #from-station, #to-station, #duration {
+    width: 22%;
+}
+#start, #city, #land, #station-name, #end,
+#from-station, #to-station, #duration{
     outline: 0;
     background: #f2f2f2;
-    width: 35%;
     border: 0;
     margin: 15px;
     padding: 15px;
@@ -23,17 +43,16 @@
     font-size: 14px;
 }
 
-#submit{
-    font-family: "Roboto", sans-serif;
+.submit{
     text-transform: uppercase;
     outline: 0;
-    background: #0065a4;
+    background: var(--main-background);
     width: 15%;
     border: 0;
     padding: 15px;
     margin: 15px;
     float: right;
-    color: #FFFFFF;
+    color: var(--content-background);
     font-size: 14px;
     cursor: pointer;
 }

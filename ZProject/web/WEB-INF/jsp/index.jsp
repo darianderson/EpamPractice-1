@@ -42,7 +42,7 @@
             <input type="hidden" name="command" value="ticket_search"/>
             <input type="text" name="from" id="start" placeholder="from">
             <input type="text" name="to" id="end" placeholder="to">
-            <input type="submit" id="submit" value="search">
+            <input type="submit" class="submit" value="search">
         </form>
 
         <c:if test="${requestScope.appRoute != null}">

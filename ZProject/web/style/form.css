@@ -2,47 +2,39 @@
     font-family: 'Roboto';
     src: url('../fonts/Roboto-Light.ttf');
 }
+
 @font-face {
     font-family: 'Open Sans';
     src: url('../fonts/OpenSans-Light.ttf');
 }
+
 .login-page {
     width: 360px;
     padding: 10% 0 0;
     margin: 0 auto;
 }
 
-.form{
-    position: relative;
-    z-index: 1;
-    background: #FFFFFF;
+.form {
     max-width: 360px;
-    margin: 0 auto 100px;
-    padding: 45px;
-    text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-#tickets{
+.form, .admin-box {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+    0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form, .admin-box, .add-zone {
     position: relative;
     z-index: 1;
-    background: #FFFFFF;
-    margin: 0 auto 100px;
+    background: var(--content-background);
+    margin: 0 auto 40px;
     padding: 45px;
     text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.ticket_table tr th{
-    font-size: 1.5em;
-    font-weight: bold;
-}
-.ticket_table tr td{
-    font-size: 1.3em;
-}
-.login-page h1{
+.login-page h1 {
     font-family: 'Open Sans', sans-serif;
-    color: #ffffff;
+    color: var(--content-background);
     text-decoration: none;
     text-transform: uppercase;
     font-size: 3.2em;
@@ -54,8 +46,8 @@
     position: relative;
     margin-bottom: 20px;
 }
+
 .form input, .form select {
-    font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
     width: 100%;
@@ -65,44 +57,49 @@
     box-sizing: border-box;
     font-size: 14px;
 }
-.form select{
-    border: #0065a4 1px solid;
+
+.form select {
+    border: var(--content-background) 1px solid;
 }
+
 .form .sub {
-    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #0065a4;
+    background: var(--main-background);
     width: 100%;
     border: 0;
     padding: 15px;
-    color: #FFFFFF;
+    color: var(--content-background);
     font-size: 14px;
     cursor: pointer;
 }
-.form .sub:hover,.form .sub:active,.form .sub:focus {
-    background: #0053a4;
+
+.form .sub:hover, .form .sub:active, .form .sub:focus,
+.submit:hover, .submit.active, .submit:focus{
+    background: var(--main-hover);
 }
+
 .form .message {
     margin: 15px 0 0;
     color: #b3b3b3;
     font-size: 12px;
 }
+
 .form .message a {
     color: #0042a4;
     text-decoration: none;
 }
+
 .form .register-form {
     display: none;
 }
 
 #body {
-    background: #0053a4; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #0053a4, #0042a4);
-    background: -moz-linear-gradient(right, #0053a4, #0042a4);
-    background: -o-linear-gradient(right, #0053a4, #0042a4);
-    background: linear-gradient(to left, #0053a4, #0042a4);
-    font-family: "Roboto", sans-serif;
+    background: var(--main-background); /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, var(--main-background), #0042a4);
+    background: -moz-linear-gradient(right, var(--main-background), #0042a4);
+    background: -o-linear-gradient(right, var(--main-background), #0042a4);
+    background: linear-gradient(to left, var(--main-background), #0042a4);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
