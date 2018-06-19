@@ -32,7 +32,7 @@
                 $( "#start" ).autocomplete({
                     source: stations
                 });
-                $( "#end" ).autocomplete({;
+                $( "#end" ).autocomplete({
                     source: stations
                 });
             } );
@@ -45,6 +45,29 @@
             <input type="submit" id="submit" value="search">
         </form>
 
+        <c:if test="${requestScope.appRoute != null}">
+            <div class="form" style="max-width: 100%; margin-top: 50px;font-size: 1.5em;">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Route No</th>
+                        <th>Train Model</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                    </tr>
+
+                    <c:forEach items="${requestScope.appRoute}" var="r">
+                        <tr>
+                            <td> ${r} </td>
+                            <td> ${r}</td>
+                            <td> ${r}</td>
+                            <td> ${r}</td>
+                        </tr>
+                    </c:forEach>
+
+                </table>
+
+            </div>
+        </c:if>
     </div>
 </div>
 

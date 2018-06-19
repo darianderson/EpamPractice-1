@@ -18,6 +18,18 @@ public class Route {
             this.arrival = arrival;
             this.departure = departure;
         }
+
+        public Station getStation() {
+            return station;
+        }
+
+        public Date getArrival() {
+            return arrival;
+        }
+
+        public Date getDeparture() {
+            return departure;
+        }
     }
 
     public int getId() {
@@ -27,6 +39,7 @@ public class Route {
         this.id = id;
     }
 
+    // DO NOT DELETE !!!
     public Train getTrain() {
         return train;
     }
@@ -38,13 +51,7 @@ public class Route {
         stations.add(new Stop(s,a,d));
     }
 
-    public Station getFirstStation(){
-        return stations.get(0).station;
+    public List<Stop> getStations() {
+        return stations;
     }
-
-    public Station getLastStation(){
-        return stations.get(stations.size()-1).station;
-    }
-
-
 }

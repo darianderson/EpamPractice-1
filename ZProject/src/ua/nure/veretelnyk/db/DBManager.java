@@ -113,6 +113,25 @@ public class DBManager {
         return user;
     }
 
+    public boolean updateUser(User user){
+        PreparedStatement statement;
+        ResultSet rs;
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("UPDATE users SET name=?, surname=? WHERE id=?");
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getSurname());
+            statement.setInt(3, user.getId());
+
+            statement.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     public Country getCountry(int id){
         PreparedStatement statement;
@@ -332,14 +351,11 @@ public class DBManager {
 
     private void addStationForRoute(Route route, ResultSet rs) throws SQLException, ParseException {
         Station station = getStation(rs.getInt("station_id"));
-        DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date arrival = df.parse(rs.getString("arrival"));
         Date departure = df.parse(rs.getString("departure"));
         route.addStation(station, arrival, departure);
     }
-
-
-
 
     public List<Ticket> getTicketsForUser(User user){
         List<Ticket> tickets = new ArrayList<>();

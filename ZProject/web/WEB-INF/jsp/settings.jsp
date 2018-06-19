@@ -17,11 +17,15 @@
     <%@ include file="/WEB-INF/jspf/header.jspf" %>
 
     <div id="content" class="column span-24 last">
-        <div id="tickets" class="column span-16 last">df</div>
+        <div id="tickets" class="column span-16 last">
+
+
+        </div>
         <div id="sidebar" class="column span-8 last">
-            <form method="post" class="form">
+            <form action="/controller?command=settings_pane" method="post" class="form">
                 <input type="hidden" name="command" value="settings_pane"/>
-                <select title="Language">
+                <p>${requestScope.errorMessage}</p>
+                <select title="Language" name="language">
                     <option>English</option>
                     <option>Spanish</option>
                     <option>Russian</option>
