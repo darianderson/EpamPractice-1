@@ -14,5 +14,6 @@ public class Path {
     public static final String PAGE_LOGIN = JSP + "login.jsp";
     public static final String PAGE_SETTINGS = JSP + "settings.jsp";
     public static final String PAGE_ADMIN = JSP + "admin.jsp";
+    public static final String PAGE_BUY = JSP + "buy.jsp";
 
 }

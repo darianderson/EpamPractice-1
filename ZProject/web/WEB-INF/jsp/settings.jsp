@@ -18,7 +18,24 @@
 
     <div id="content" class="column span-24 last">
         <div id="tickets" class="column span-16 last">
+            <c:if test="${requestScope.tickets != null}">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Route No</th>
+                            <th>carriage</th>
+                            <th>place</th>
+                        </tr>
 
+                        <c:forEach items="${requestScope.tickets}" var="r">
+                            <tr>
+                                <td> ${r.getRoute().getId()} </td>
+                                <td> ${r.getCarriageNo()}</td>
+                                <td> ${r.getPlaceNo()}</td>
+                            </tr>
+                        </c:forEach>
+
+                    </table>
+            </c:if>
 
         </div>
         <div id="sidebar" class="column span-8 last">

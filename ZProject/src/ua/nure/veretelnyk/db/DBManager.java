@@ -384,4 +384,23 @@ public class DBManager {
         return tickets;
     }
 
+    public boolean addTicket(Ticket ticket){
+        PreparedStatement statement;
+
+        try(Connection con = getConnection()){
+            statement = con.prepareStatement("INSERT INTO tickets VALUE (?,?,?,?)");
+            statement.setInt(1, ticket.getUser().getId());
+            statement.setInt(2, ticket.getRoute().getId());
+            statement.setInt(3, ticket.getCarriageNo());
+            statement.setInt(4, ticket.getPlaceNo());
+
+            statement.executeUpdate();
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

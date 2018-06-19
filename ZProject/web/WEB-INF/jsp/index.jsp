@@ -53,14 +53,18 @@
                         <th>Train Model</th>
                         <th>Departure</th>
                         <th>Arrival</th>
+                        <th>Time in road</th>
+                        <th>Buy</th>
                     </tr>
 
                     <c:forEach items="${requestScope.appRoute}" var="r">
                         <tr>
-                            <td> ${r} </td>
-                            <td> ${r}</td>
-                            <td> ${r}</td>
-                            <td> ${r}</td>
+                            <td> ${r.getRouteId()} </td>
+                            <td> ${r.getTrainModel()}</td>
+                            <td> ${r.getDeparture()}</td>
+                            <td> ${r.getArrival()}</td>
+                            <td> ${r.getRoadTime()}</td>
+                            <td> <a href="${r.getBuyLink()}">buy</a></td>
                         </tr>
                     </c:forEach>
 

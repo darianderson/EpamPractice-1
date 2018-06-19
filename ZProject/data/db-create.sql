@@ -96,28 +96,16 @@ INSERT INTO carriage_type(type) VALUES
   ('compartment'), ('berth'), ('common');
 
 
-CREATE TABLE carriage_class(
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT KEY,
-  class VARCHAR(32)
-) ENGINE=InnoDB;
-
-INSERT INTO carriage_class(class) VALUES
-  ('economy'), ('business'), ('premium');
-
-
 CREATE TABLE carriages(
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT KEY,
   type INTEGER UNSIGNED NOT NULL,
-  class INTEGER UNSIGNED NOT NULL,
   total_places INTEGER UNSIGNED NOT NUll,
 
   FOREIGN KEY (type) REFERENCES carriage_type(id),
-  FOREIGN KEY (class) REFERENCES carriage_class(id)
 ) ENGINE=InnoDB;
 
-INSERT INTO carriages(type, class, total_places) VALUES
-  (1, 1, 50), (1, 3, 25), (3, 2, 20), (3, 3, 10);
-
+INSERT INTO carriages(type, total_places) VALUES
+  (1, 50), (1, 25), (3, 20), (3, 10);
 
 CREATE TABLE train_carriage(
   train_id INTEGER UNSIGNED NOT NULL,
@@ -130,10 +118,10 @@ CREATE TABLE train_carriage(
 ) ENGINE=InnoDB;
 
 INSERT INTO train_carriage VALUES
-  (1, 1, 1, 20), (1, 1, 2, 20), (1, 3, 4, 50), (1, 2, 5, 35),
-  (2, 1, 1, 20), (2, 1, 2, 20), (2, 3, 4, 50), (2, 2, 5, 35),
-  (3, 2, 3, 20), (3, 3, 2, 20), (3, 3, 4, 50), (2, 2, 5, 35),
-  (4, 1, 1, 20), (4, 1, 1, 20), (4, 3, 4, 50), (4, 2, 5, 35);
+  (1, 1, 1, 20), (1, 1, 2, 20), (1, 3, 3, 50), (1, 2, 4, 35),
+  (2, 1, 1, 20), (2, 1, 2, 20), (2, 3, 3, 50), (2, 2, 4, 35),
+  (3, 2, 1, 20), (3, 3, 2, 20), (3, 3, 3, 50), (3, 2, 4, 35),
+  (4, 1, 1, 20), (4, 1, 2, 20), (4, 3, 3, 50), (4, 2, 4, 35);
 
 
 ######################################################

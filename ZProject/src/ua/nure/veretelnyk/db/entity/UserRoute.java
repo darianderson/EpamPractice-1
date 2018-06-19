@@ -14,4 +14,29 @@ public class UserRoute {
     public String price;
     public String detailsLink;
     public String buyLink;
+
+
+    public int getRouteId() {
+        return routeId;
+    }
+
+    public String getTrainModel() {
+        return trainModel;
+    }
+
+    public String getDeparture() {
+        return departure;
+    }
+
+    public String getArrival() {
+        return arrival;
+    }
+
+    public String getRoadTime() {
+        return roadTime;
+    }
+
+    public String getBuyLink() {
+        return buyLink;
+    }
 }

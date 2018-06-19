@@ -57,7 +57,9 @@
     box-sizing: border-box;
     font-size: 14px;
 }
-
+.form p{
+    font-size: 1.3em;
+}
 .form select {
     border: var(--content-background) 1px solid;
 }

@@ -13,12 +13,21 @@ public class GetPageCmd extends Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, AppException {
         String page = req.getParameter("page");
-        switch (page){
+        String routeId = req.getParameter("routeId");
+        switch (page) {
             default:
-            case "index": return Path.PAGE_HOME;
-            case "login": return Path.PAGE_LOGIN;
-            case "settings": return Path.PAGE_SETTINGS;
-            case "admin": return Path.PAGE_ADMIN;
+            case "index":
+                return Path.PAGE_HOME;
+            case "login":
+                return Path.PAGE_LOGIN;
+            case "settings":
+                return Path.PAGE_SETTINGS;
+            case "admin":
+                return Path.PAGE_ADMIN;
+            case "buy":
+                System.out.println(routeId);
+                req.setAttribute("routeId", routeId);
+                return Path.PAGE_BUY;
         }
     }
 }

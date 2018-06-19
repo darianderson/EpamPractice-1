@@ -39,7 +39,7 @@ public class TicketSearchCmd extends Command {
 
         List<UserRoute> appropriateRoute = new ArrayList<>();
         DateFormat df = new SimpleDateFormat("dd MMMM yyyy HH:mm");
-        DateFormat timeFormater = new SimpleDateFormat("HH hours mm minutes");
+        DateFormat timeFormater = new SimpleDateFormat("HH:mm");
         for(Route route : routes){
             List<Route.Stop> stops = route.getStations();
             int fromId = -1;
@@ -49,7 +49,7 @@ public class TicketSearchCmd extends Command {
 
             userRoute.routeId = route.getId();
             userRoute.trainModel = route.getTrain().getModel().getModel();
-
+            userRoute.buyLink = "/controller?command=get_page&page=buy&routeId="+route.getId();
             Date depDate = null, arrDate;
 
             int counter = 0;
@@ -77,9 +77,6 @@ public class TicketSearchCmd extends Command {
             if(fromId < toId) {
                 userRoute.departureStation = fromStation + ", " + fromCountry;
                 userRoute.arrivalStation = toStation + ", " + toCountry;
-
-
-
                 appropriateRoute.add(userRoute);
             }
         }

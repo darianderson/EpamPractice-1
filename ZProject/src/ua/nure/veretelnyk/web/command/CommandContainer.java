@@ -19,6 +19,7 @@ public class CommandContainer {
         commands.put("ticket_search", new TicketSearchCmd());
         commands.put("get_page", new GetPageCmd());
         commands.put("settings_pane", new SettingsCmd());
+        commands.put("buy_ticket", new BuyTicket());
 
         LOG.debug("CommandContainer initialized.");
     }
