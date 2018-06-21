@@ -19,27 +19,27 @@
     <div id="content" class="column span-24 last">
         <div id="tickets" class="column span-16 last">
             <c:if test="${requestScope.tickets != null}">
-                    <table class="table table-hover">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Route No</th>
+                        <th>carriage</th>
+                        <th>place</th>
+                    </tr>
+
+                    <c:forEach items="${requestScope.tickets}" var="r">
                         <tr>
-                            <th>Route No</th>
-                            <th>carriage</th>
-                            <th>place</th>
+                            <td> ${r.getRoute().getId()} </td>
+                            <td> ${r.getCarriageNo()}</td>
+                            <td> ${r.getPlaceNo()}</td>
                         </tr>
+                    </c:forEach>
 
-                        <c:forEach items="${requestScope.tickets}" var="r">
-                            <tr>
-                                <td> ${r.getRoute().getId()} </td>
-                                <td> ${r.getCarriageNo()}</td>
-                                <td> ${r.getPlaceNo()}</td>
-                            </tr>
-                        </c:forEach>
-
-                    </table>
+                </table>
             </c:if>
 
         </div>
         <div id="sidebar" class="column span-8 last">
-            <form action="/controller?command=settings_pane" method="post" class="form">
+            <form action="controller" method="post" class="form">
                 <input type="hidden" name="command" value="settings_pane"/>
                 <p>${requestScope.errorMessage}</p>
                 <select title="Language" name="language">
@@ -47,8 +47,8 @@
                     <option>Spanish</option>
                     <option>Russian</option>
                 </select>
-                <input type="text" maxlength="32" placeholder="name" name="name"  />
-                <input type="text" maxlength="32" placeholder="surname" name="surname" />
+                <input type="text" maxlength="32" value="${requestScope.userName}" placeholder="name" name="name"  />
+                <input type="text" maxlength="32" value="${requestScope.userSurname}" placeholder="surname" name="surname" />
                 <input type="submit" class="sub" value="save"/>
             </form>
         </div>

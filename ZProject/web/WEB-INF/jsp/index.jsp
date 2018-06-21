@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
+<c:if test="${requestScope.stations == null}">
+    <jsp:forward page="/controller?command=get_page&page=index"/>
+</c:if>
 
 <html>
 <head>
@@ -16,11 +19,6 @@
     <%@ include file="/WEB-INF/jspf/header.jspf" %>
 
     <div id="content" class="column span-24 last">
-
-        <c:if test="${requestScope.stations == null}">
-            <jsp:forward page="/controller?command=get_stations"/>
-        </c:if>
-
 
         <script>
             $( function() {
@@ -38,7 +36,7 @@
             } );
         </script>
 
-        <form id="search_form" action="/controller?command=ticket_search" method="post">
+        <form id="search_form" action="controller" method="post">
             <input type="hidden" name="command" value="ticket_search"/>
             <input type="text" name="from" id="start" placeholder="from">
             <input type="text" name="to" id="end" placeholder="to">
@@ -54,6 +52,7 @@
                         <th>Departure</th>
                         <th>Arrival</th>
                         <th>Time in road</th>
+                        <th>Price</th>
                         <th>Buy</th>
                     </tr>
 
@@ -64,6 +63,7 @@
                             <td> ${r.getDeparture()}</td>
                             <td> ${r.getArrival()}</td>
                             <td> ${r.getRoadTime()}</td>
+                            <td> ${r.getPrice()}</td>
                             <td> <a href="${r.getBuyLink()}">buy</a></td>
                         </tr>
                     </c:forEach>

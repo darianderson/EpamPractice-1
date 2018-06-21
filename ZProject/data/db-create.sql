@@ -105,7 +105,7 @@ CREATE TABLE carriages(
 ) ENGINE=InnoDB;
 
 INSERT INTO carriages(type, total_places) VALUES
-  (1, 50), (1, 25), (3, 20), (3, 10);
+  (1, 50), (1, 50), (3, 50), (3, 50);
 
 CREATE TABLE train_carriage(
   train_id INTEGER UNSIGNED NOT NULL,
@@ -151,15 +151,21 @@ INSERT INTO users VALUES (DEFAULT, 'bombardier', 'canadarules', 'Joseph-Armand',
 
 
 CREATE TABLE tickets(
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT KEY,
   user_id INTEGER UNSIGNED NOT NULL,
   route_id INTEGER UNSIGNED NOT NULL,
+  fromSt INTEGER UNSIGNED NOT NULL,
+  toSt INTEGER UNSIGNED NOT NULL,
   carriage_no INTEGER UNSIGNED NOT NULL,
   place INTEGER,
+  wasPayed BIT DEFAULT = 0,
 
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (fromSt) REFERENCES stations(id),
+  FOREIGN KEY (toSt) REFERENCES stations(id)
 ) ENGINE=InnoDB;
 
-INSERT INTO tickets VALUE (2, 345, 2, 32);
+/*INSERT INTO tickets VALUE (2, 345, 2, 32);*/
 
 
 SELECT * FROM countries;

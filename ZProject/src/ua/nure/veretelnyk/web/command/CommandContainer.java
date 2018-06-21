@@ -12,10 +12,11 @@ public class CommandContainer {
 
     static {
         commands.put("login", new LoginCmd());
-        commands.put("logout", new LogoutCmd());
-        commands.put("error", new ErrorCmd());
         commands.put("register", new RegistrCmd());
-        commands.put("get_stations", new GetStationsCmd());
+        commands.put("logout", new LogoutCmd());
+
+        commands.put("error", new ErrorCmd());
+
         commands.put("ticket_search", new TicketSearchCmd());
         commands.put("get_page", new GetPageCmd());
         commands.put("settings_pane", new SettingsCmd());

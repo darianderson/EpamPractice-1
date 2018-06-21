@@ -1,10 +1,22 @@
 package ua.nure.veretelnyk.db.entity;
 
 public class Ticket {
+    private int id;
     private User user;
     private Route route;
+    private Station from;
+    private Station to;
     private int carriageNo;
     private int placeNo;
+    private boolean wasPayed;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public User getUser() {
         return user;
@@ -32,5 +44,29 @@ public class Ticket {
     }
     public void setPlaceNo(int placeNo) {
         this.placeNo = placeNo;
+    }
+
+    public Station getFrom() {
+        return from;
+    }
+
+    public void setFrom(Station from) {
+        this.from = from;
+    }
+
+    public Station getTo() {
+        return to;
+    }
+
+    public void setTo(Station to) {
+        this.to = to;
+    }
+
+    public boolean isWasPayed() {
+        return wasPayed;
+    }
+
+    public void setWasPayed(boolean wasPayed) {
+        this.wasPayed = wasPayed;
     }
 }

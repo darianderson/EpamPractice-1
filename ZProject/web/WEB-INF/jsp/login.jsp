@@ -19,13 +19,14 @@
         <c:if test="${sessionScope.login != null}">
             <jsp:forward page = "/WEB-INF/jsp/index.jsp" />
         </c:if>
+
       <div class="login-page">
           <h1>Railway Express</h1>
           <div class="form">
               <p id="info">${requestScope.signinError}</p>
               <form action="controller" method="post"  class="register-form">
                   <input type="hidden" name="command" value="register"/>
-                  <input type="text" maxlength="32" placeholder="username" name="login" required="required"/>
+                  <input type="text" maxlength="32" autofocus="autofocus" placeholder="username" name="login" required="required"/>
                   <input type="password" maxlength="32" placeholder="password" name="pass" required="required" />
                   <input type="password" maxlength="32" placeholder="repeat password" name="pass_repeat" required="required"/>
                   <input type="submit" class="sub" value="create"/>

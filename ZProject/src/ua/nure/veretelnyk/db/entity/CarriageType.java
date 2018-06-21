@@ -1,7 +1,7 @@
 package ua.nure.veretelnyk.db.entity;
 
 public enum CarriageType {
-    COMPARTMENT("compartment"), BERTH("berth"), COMMON("common");
+    compartment("compartment"), berth("berth"), common("common");
     private String name;
 
     CarriageType(String name) {

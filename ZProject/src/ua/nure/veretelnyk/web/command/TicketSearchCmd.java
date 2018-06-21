@@ -2,6 +2,7 @@ package ua.nure.veretelnyk.web.command;
 
 import ua.nure.veretelnyk.Path;
 import ua.nure.veretelnyk.db.DBManager;
+import ua.nure.veretelnyk.db.entity.Carriage;
 import ua.nure.veretelnyk.db.entity.Route;
 import ua.nure.veretelnyk.db.entity.Station;
 import ua.nure.veretelnyk.db.entity.UserRoute;
@@ -49,7 +50,9 @@ public class TicketSearchCmd extends Command {
 
             userRoute.routeId = route.getId();
             userRoute.trainModel = route.getTrain().getModel().getModel();
-            userRoute.buyLink = "/controller?command=get_page&page=buy&routeId="+route.getId();
+            userRoute.buyLink = "/controller?command=get_page&page=buy&routeId="+route.getId() +
+                "&from="+req.getParameter("from")+
+                    "&to="+req.getParameter("to");
             Date depDate = null, arrDate;
 
             int counter = 0;
@@ -77,6 +80,9 @@ public class TicketSearchCmd extends Command {
             if(fromId < toId) {
                 userRoute.departureStation = fromStation + ", " + fromCountry;
                 userRoute.arrivalStation = toStation + ", " + toCountry;
+
+                List<Carriage> carriages = db.getCarriages(route.getTrain());
+                userRoute.price = carriages.get(0).getPrice();
                 appropriateRoute.add(userRoute);
             }
         }

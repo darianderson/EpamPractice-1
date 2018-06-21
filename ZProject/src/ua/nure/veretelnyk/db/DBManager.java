@@ -370,10 +370,14 @@ public class DBManager {
             while(rs.next()){
                 Ticket ticket = new Ticket();
 
+                ticket.setId(rs.getInt("id"));
                 ticket.setUser(user);
                 ticket.setRoute(getRoute(rs.getInt("route_id")));
                 ticket.setCarriageNo(rs.getInt("carriage_no"));
                 ticket.setPlaceNo(rs.getInt("place"));
+                ticket.setFrom(getStation(rs.getInt("fromSt")));
+                ticket.setTo(getStation(rs.getInt("toSt")));
+                ticket.setWasPayed(rs.getBoolean("wasPayed"));
 
                 tickets.add(ticket);
             }
@@ -388,11 +392,15 @@ public class DBManager {
         PreparedStatement statement;
 
         try(Connection con = getConnection()){
-            statement = con.prepareStatement("INSERT INTO tickets VALUE (?,?,?,?)");
-            statement.setInt(1, ticket.getUser().getId());
-            statement.setInt(2, ticket.getRoute().getId());
-            statement.setInt(3, ticket.getCarriageNo());
-            statement.setInt(4, ticket.getPlaceNo());
+            statement = con.prepareStatement("INSERT INTO tickets VALUE (?,?,?,?,?,?,?,?)");
+            statement.setString(1, "DEFAULT");
+            statement.setInt(2, ticket.getUser().getId());
+            statement.setInt(3, ticket.getRoute().getId());
+            statement.setInt(4, ticket.getFrom().getId());
+            statement.setInt(5, ticket.getTo().getId());
+            statement.setInt(6, ticket.getCarriageNo());
+            statement.setInt(7, ticket.getPlaceNo());
+            statement.setBoolean(8, ticket.isWasPayed());
 
             statement.executeUpdate();
             con.commit();
@@ -402,5 +410,76 @@ public class DBManager {
         }
         return false;
     }
+
+
+    public CarriageType getCarriageType(int id){
+        CarriageType type = null;
+        PreparedStatement statement;
+        ResultSet rs;
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM carriage_type WHERE id=?");
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
+
+            if(rs.next()) {
+                System.out.println(rs.getString("type"));
+                type = CarriageType.valueOf(rs.getString("type"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return type;
+    }
+
+    public Carriage getCarriage(int id){
+        Carriage carriage = new Carriage();
+        PreparedStatement statement;
+        ResultSet rs;
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM carriages WHERE id=?");
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
+
+            while(rs.next()){
+                carriage.setId(id);
+                carriage.setType(getCarriageType(rs.getInt("type")));
+                carriage.setTotalPlaces(rs.getInt("total_places"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return carriage;
+    }
+
+    public List<Carriage> getCarriages(Train train){
+        List<Carriage> carriages = new ArrayList<>();
+        PreparedStatement statement;
+        ResultSet rs;
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM train_carriage WHERE train_id=?");
+            statement.setInt(1, train.getId());
+            rs = statement.executeQuery();
+
+            while(rs.next()){
+                Carriage carriage = getCarriage(rs.getInt("carriage_id"));
+                if(carriage != null) {
+                    carriage.setNumber(rs.getInt("carriage_no"));
+                    carriage.setPrice(rs.getInt("price"));
+                    carriages.add(carriage);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return carriages;
+    }
+
 
 }

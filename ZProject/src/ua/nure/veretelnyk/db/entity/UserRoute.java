@@ -8,11 +8,7 @@ public class UserRoute {
     public String arrival;
     public String arrivalStation;
     public String roadTime;
-    public String compartment;
-    public String berth;
-    public String common;
-    public String price;
-    public String detailsLink;
+    public int price;
     public String buyLink;
 
 
@@ -38,5 +34,9 @@ public class UserRoute {
 
     public String getBuyLink() {
         return buyLink;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }
