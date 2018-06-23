@@ -392,15 +392,15 @@ public class DBManager {
         PreparedStatement statement;
 
         try(Connection con = getConnection()){
-            statement = con.prepareStatement("INSERT INTO tickets VALUE (?,?,?,?,?,?,?,?)");
-            statement.setString(1, "DEFAULT");
-            statement.setInt(2, ticket.getUser().getId());
-            statement.setInt(3, ticket.getRoute().getId());
-            statement.setInt(4, ticket.getFrom().getId());
-            statement.setInt(5, ticket.getTo().getId());
-            statement.setInt(6, ticket.getCarriageNo());
-            statement.setInt(7, ticket.getPlaceNo());
-            statement.setBoolean(8, ticket.isWasPayed());
+            statement = con.prepareStatement("INSERT INTO tickets(user_id, route_id, fromSt, toSt, carriage_no, place, wasPayed) VALUE (?,?,?,?,?,?,?)");
+            int k=1;
+            statement.setInt(k++, ticket.getUser().getId());
+            statement.setInt(k++, ticket.getRoute().getId());
+            statement.setInt(k++, ticket.getFrom().getId());
+            statement.setInt(k++,ticket.getTo().getId());
+            statement.setInt(k++, ticket.getCarriageNo());
+            statement.setInt(k++, ticket.getPlaceNo());
+            statement.setBoolean(k++, ticket.isWasPayed());
 
             statement.executeUpdate();
             con.commit();
@@ -422,10 +422,9 @@ public class DBManager {
             statement.setInt(1, id);
             rs = statement.executeQuery();
 
-            if(rs.next()) {
-                System.out.println(rs.getString("type"));
+            if(rs.next())
                 type = CarriageType.valueOf(rs.getString("type"));
-            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();

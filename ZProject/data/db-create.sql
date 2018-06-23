@@ -1,18 +1,19 @@
-
-##CREATE DATABASE railways;
-##GRANT ALL ON railways.* TO 'blackwell'@'localhost' IDENTIFIED BY 'salt';
-##use railways;
+DROP DATABASE railways;
+CREATE DATABASE railways;
+GRANT ALL ON railways.* TO 'blackwell'@'localhost' IDENTIFIED BY 'salt';
+use railways;
 
 DROP TABLE IF EXISTS tickets;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS train_carriage;
 DROP TABLE IF EXISTS carriages;
-DROP TABLE IF EXISTS carriage_class;
 DROP TABLE IF EXISTS carriage_type;
 DROP TABLE IF EXISTS routes;
 DROP TABLE IF EXISTS stations;
 DROP TABLE IF EXISTS countries;
+DROP TABLE IF EXISTS trains;
+DROP TABLE IF EXISTS models;
 
 ######################################################
 ## trains and there models
@@ -27,7 +28,7 @@ INSERT INTO models (model)
 
 
 CREATE TABLE trains(
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT KEY,
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   model_id INTEGER UNSIGNED NOT NULL,
   since DATE,
 
@@ -101,7 +102,7 @@ CREATE TABLE carriages(
   type INTEGER UNSIGNED NOT NULL,
   total_places INTEGER UNSIGNED NOT NUll,
 
-  FOREIGN KEY (type) REFERENCES carriage_type(id),
+  FOREIGN KEY (type) REFERENCES carriage_type(id)
 ) ENGINE=InnoDB;
 
 INSERT INTO carriages(type, total_places) VALUES
@@ -158,7 +159,7 @@ CREATE TABLE tickets(
   toSt INTEGER UNSIGNED NOT NULL,
   carriage_no INTEGER UNSIGNED NOT NULL,
   place INTEGER,
-  wasPayed BIT DEFAULT = 0,
+  wasPayed BIT DEFAULT 0,
 
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (fromSt) REFERENCES stations(id),
@@ -172,7 +173,6 @@ SELECT * FROM countries;
 SELECT * FROM stations;
 SELECT * FROM routes;
 SELECT * FROM carriage_type;
-SELECT * FROM carriage_class;
 SELECT * FROM carriages;
 SELECT * FROM train_carriage;
 SELECT * FROM roles;

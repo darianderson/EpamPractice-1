@@ -45,14 +45,13 @@ public class TicketSearchCmd extends Command {
             List<Route.Stop> stops = route.getStations();
             int fromId = -1;
             int toId = -1;
+            int fromStationId=0, toStationId = 0;
 
             UserRoute userRoute = new UserRoute();
 
             userRoute.routeId = route.getId();
             userRoute.trainModel = route.getTrain().getModel().getModel();
-            userRoute.buyLink = "/controller?command=get_page&page=buy&routeId="+route.getId() +
-                "&from="+req.getParameter("from")+
-                    "&to="+req.getParameter("to");
+            userRoute.buyLink = "/controller?command=get_page&page=buy&routeId="+route.getId();
             Date depDate = null, arrDate;
 
             int counter = 0;
@@ -62,6 +61,7 @@ public class TicketSearchCmd extends Command {
                 if (fromStation.equals(s.getName()) && fromCountry.equals(s.getCountry().getFullName())) {
                     fromId = counter;
                     depDate = stop.getDeparture();
+                    fromStationId = stop.getStation().getId();
                     userRoute.departure = df.format(depDate);
                 }
 
@@ -69,6 +69,7 @@ public class TicketSearchCmd extends Command {
                     toId = counter;
                     arrDate = stop.getArrival();
                     userRoute.arrival = df.format(arrDate);
+                    toStationId = stop.getStation().getId();
 
                     long roadTime = arrDate.getTime() - depDate.getTime();
                     userRoute.roadTime = timeFormater.format(new Date(roadTime));
@@ -80,6 +81,8 @@ public class TicketSearchCmd extends Command {
             if(fromId < toId) {
                 userRoute.departureStation = fromStation + ", " + fromCountry;
                 userRoute.arrivalStation = toStation + ", " + toCountry;
+
+                userRoute.buyLink += "&from="+fromStationId+"&to="+toStationId;
 
                 List<Carriage> carriages = db.getCarriages(route.getTrain());
                 userRoute.price = carriages.get(0).getPrice();

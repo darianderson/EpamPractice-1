@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
+<c:if test="${requestScope.tickets == null}">
+    <jsp:forward page="/controller?command=get_page&page=settings"/>
+</c:if>
 
 <html>
 <head>
@@ -17,28 +20,27 @@
     <%@ include file="/WEB-INF/jspf/header.jspf" %>
 
     <div id="content" class="column span-24 last">
-        <div id="tickets" class="column span-16 last">
-            <c:if test="${requestScope.tickets != null}">
-                <table class="table table-hover">
+        <div id="tickets" class="column span-15 last">
+
+            <table class="table table-hover">
+                <tr>
+                    <th>Route No</th>
+                    <th>carriage</th>
+                    <th>place</th>
+                </tr>
+
+                <c:forEach items="${requestScope.tickets}" var="r">
                     <tr>
-                        <th>Route No</th>
-                        <th>carriage</th>
-                        <th>place</th>
+                        <td> ${r.getRoute().getId()} </td>
+                        <td> ${r.getCarriageNo()}</td>
+                        <td> ${r.getPlaceNo()}</td>
                     </tr>
+                </c:forEach>
 
-                    <c:forEach items="${requestScope.tickets}" var="r">
-                        <tr>
-                            <td> ${r.getRoute().getId()} </td>
-                            <td> ${r.getCarriageNo()}</td>
-                            <td> ${r.getPlaceNo()}</td>
-                        </tr>
-                    </c:forEach>
-
-                </table>
-            </c:if>
+            </table>
 
         </div>
-        <div id="sidebar" class="column span-8 last">
+        <div id="sidebar" style="margin-left: 50px; margin-top: 0;" class="column span-8 last">
             <form action="controller" method="post" class="form">
                 <input type="hidden" name="command" value="settings_pane"/>
                 <p>${requestScope.errorMessage}</p>

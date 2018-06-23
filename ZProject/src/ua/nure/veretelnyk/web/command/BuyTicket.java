@@ -21,9 +21,6 @@ public class BuyTicket extends Command {
         String routeId = req.getParameter("routeId");
         String carriageStr = req.getParameter("carriage");
         String placeStr = req.getParameter("place");
-        System.out.println("haha");
-
-
 
         String errorMessage = "Everything is fine.";
         String forward = Path.PAGE_BUY;
@@ -34,11 +31,24 @@ public class BuyTicket extends Command {
         List<Carriage> carriages = db.getCarriages(db.getRoute(Integer.parseInt(routeId)).getTrain());
         int carriage = Integer.parseInt(carriageStr);
         int place = Integer.parseInt(placeStr);
+        User user = db.getUser(login);
 
-        System.out.println(carriage);
-        System.out.println(place);
-        System.out.println(carriages.size());
-        System.out.println(carriages.get(carriage).getTotalPlaces());
+        Ticket ticket = new Ticket();
+        ticket.setUser(user);
+        ticket.setRoute(db.getRoute(Integer.parseInt(routeId)));
+        ticket.setPlaceNo(place);
+        ticket.setCarriageNo(carriage);
+
+
+        int fromId = Integer.parseInt(req.getParameter("from"));
+        int toId = Integer.parseInt(req.getParameter("to"));
+
+        ticket.setFrom(db.getStation(fromId));
+        ticket.setTo(db.getStation(toId));
+
+        req.setAttribute("from", fromId);
+        req.setAttribute("to", toId);
+
 
         if (carriage > carriages.size() || carriage < 0)
             errorMessage = "Wrong carriage";
@@ -47,22 +57,30 @@ public class BuyTicket extends Command {
         else if(login == null)
             errorMessage = "You are nor log in";
         else{
-            User user = db.getUser(login);
-            Ticket ticket = new Ticket();
-            ticket.setUser(user);
-            ticket.setRoute(db.getRoute(Integer.parseInt(routeId)));
-            ticket.setPlaceNo(place);
-            ticket.setCarriageNo(carriage);
-            // TODO set from and to here
 
+
+            List<Ticket> tickets = db.getTicketsForUser(user);
+            boolean isTicketBought = false;
+            for(Ticket t : tickets)
+                if (t.getTo().getId() == ticket.getTo().getId() && t.getFrom().getId() == ticket.getFrom().getId() &&
+                        t.getCarriageNo() == ticket.getCarriageNo() && t.getPlaceNo() == ticket.getPlaceNo()){
+                        isTicketBought = true;
+                }
 
             boolean res = db.addTicket(ticket);
-            if (!res)
+            if (isTicketBought)
+                errorMessage = "You already buy this ticket.";
+            else if (!res)
                 errorMessage = "Woops...";
-            else
+            else {
                 forward = Path.PAGE_SETTINGS;
-            System.out.println(" O\n/-\\\n ^");
+            }
         }
+
+        req.setAttribute("routeId", routeId);
+        req.setAttribute("carriage", carriageStr);
+        req.setAttribute("placeStr", placeStr);
+
 
         req.setAttribute("errorMessage", errorMessage);
         return forward;
