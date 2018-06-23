@@ -21,6 +21,10 @@ public class CommandContainer {
         commands.put("get_page", new GetPageCmd());
         commands.put("settings_pane", new SettingsCmd());
         commands.put("buy_ticket", new BuyTicket());
+        commands.put("route_add", new RouteAddCmd());
+        commands.put("station_add", new StationAddCmd());
+        commands.put("station_delete", new StationDeleteCmd());
+        commands.put("route_delete", new RouteDeleteCmd());
 
         LOG.debug("CommandContainer initialized.");
     }

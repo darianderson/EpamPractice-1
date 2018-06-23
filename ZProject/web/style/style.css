@@ -10,7 +10,7 @@
 #land,
 #station-name,
 #start,
-#from-station, #to-station, #duration,
+#from-station, .add_field, #duration,
 .submit {
     font-family: "Roboto", sans-serif;
 }
@@ -29,11 +29,11 @@
     width: 35%;
 }
 
-#city, #land, #station-name, #from-station, #to-station, #duration {
+#city, #land, #station-name, #from-station, .add_field, #duration {
     width: 22%;
 }
 #start, #city, #land, #station-name, #end,
-#from-station, #to-station, #duration{
+#from-station, .add_field, #duration{
     outline: 0;
     background: #f2f2f2;
     border: 0;

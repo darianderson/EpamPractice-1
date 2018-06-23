@@ -481,4 +481,110 @@ public class DBManager {
     }
 
 
+    public List<RoutePart> getRouteParts(){
+        List<RoutePart> parts = new ArrayList<>();
+        PreparedStatement statement;
+        ResultSet rs;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try (Connection con = getConnection()){
+            statement = con.prepareStatement("SELECT * FROM routes");
+
+            rs = statement.executeQuery();
+
+            while(rs.next()){
+                RoutePart part = new RoutePart();
+                part.setRouteId(rs.getInt("id"));
+                part.setTrainId(rs.getInt("train_id"));
+                part.setStationId(rs.getInt("station_id"));
+                part.setArrival(df.parse(rs.getString("arrival")));
+                part.setDeparture(df.parse(rs.getString("departure")));
+                parts.add(part);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return parts;
+    }
+
+
+    public boolean addRoutePart(RoutePart part){
+        PreparedStatement statement;
+
+        try(Connection con = getConnection()){
+            statement = con.prepareStatement("INSERT INTO routes VALUE (?,?,?,?,?)");
+            statement.setInt(1, part.getRouteId());
+            statement.setInt(2, part.getTrainId());
+            statement.setInt(3, part.getStationId());
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            statement.setString(4, df.format(part.getArrival()));
+            statement.setString(5, df.format(part.getDeparture()));
+
+            statement.executeUpdate();
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean deleteRoutePart(RoutePart part){
+        PreparedStatement statement;
+
+        try(Connection con = getConnection()){
+            statement = con.prepareStatement("DELETE FROM routes WHERE id=? AND train_id=? AND station_id=?");
+            statement.setInt(1, part.getRouteId());
+            statement.setInt(2, part.getTrainId());
+            statement.setInt(3, part.getStationId());
+
+            statement.executeUpdate();
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean addStation(String name, int countryId){
+        PreparedStatement statement;
+
+        try(Connection con = getConnection()){
+            statement = con.prepareStatement("INSERT INTO stations (name, country_id) VALUE (?,?)");
+            statement.setString(1, name);
+            statement.setInt(2, countryId);
+
+            statement.executeUpdate();
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean deleteStation(String name, int countryId){
+        PreparedStatement statement;
+
+        try(Connection con = getConnection()){
+            statement = con.prepareStatement("SET FOREIGN_KEY_CHECKS=0");
+            statement.executeQuery();
+
+            statement = con.prepareStatement("DELETE FROM stations WHERE name=? AND country_id=?");
+            statement.setString(1, name);
+            statement.setInt(2, countryId);
+
+            statement.executeUpdate();
+
+            statement = con.prepareStatement("SET FOREIGN_KEY_CHECKS=1");
+            statement.executeQuery();
+
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

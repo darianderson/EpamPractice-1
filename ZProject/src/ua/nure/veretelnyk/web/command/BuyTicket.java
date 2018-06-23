@@ -49,7 +49,6 @@ public class BuyTicket extends Command {
         req.setAttribute("from", fromId);
         req.setAttribute("to", toId);
 
-
         if (carriage > carriages.size() || carriage < 0)
             errorMessage = "Wrong carriage";
         else if(place > carriages.get(carriage).getTotalPlaces() || place < 0)

@@ -2,10 +2,7 @@ package ua.nure.veretelnyk.web.command;
 
 import ua.nure.veretelnyk.Path;
 import ua.nure.veretelnyk.db.DBManager;
-import ua.nure.veretelnyk.db.entity.Carriage;
-import ua.nure.veretelnyk.db.entity.Station;
-import ua.nure.veretelnyk.db.entity.Ticket;
-import ua.nure.veretelnyk.db.entity.User;
+import ua.nure.veretelnyk.db.entity.*;
 import ua.nure.veretelnyk.exception.AppException;
 
 import javax.servlet.ServletException;
@@ -42,6 +39,12 @@ public class GetPageCmd extends Command {
                 }
                 return Path.PAGE_SETTINGS;
             case "admin":
+                List<Station> stations = db.getStations();
+                req.setAttribute("stations", stations);
+
+                List<RoutePart> routes = db.getRouteParts();
+                req.setAttribute("routes", routes);
+
                 return Path.PAGE_ADMIN;
             case "buy":
                 String routeId = req.getParameter("routeId");

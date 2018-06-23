@@ -1,7 +1,7 @@
-DROP DATABASE railways;
-CREATE DATABASE railways;
-GRANT ALL ON railways.* TO 'blackwell'@'localhost' IDENTIFIED BY 'salt';
-use railways;
+##DROP DATABASE railways;
+##CREATE DATABASE railways;
+##GRANT ALL ON railways.* TO 'blackwell'@'localhost' IDENTIFIED BY 'salt';
+##use railways;
 
 DROP TABLE IF EXISTS tickets;
 DROP TABLE IF EXISTS users;
