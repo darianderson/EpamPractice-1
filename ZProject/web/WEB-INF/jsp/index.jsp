@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:if test="${requestScope.stations == null}">
     <jsp:forward page="/controller?command=get_page&page=index"/>
@@ -7,10 +8,11 @@
 
 <html>
 <head>
-    <title>Home</title>
+    <title><fmt:message key='jsp.header.Home'/></title>
     <%@ include file="/WEB-INF/jspf/links.jspf" %>
     <script type="text/javascript" src="script/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="style/jquery-ui.css">
+
 </head>
 
 <body>
@@ -38,7 +40,7 @@
 
         <form id="search_form" action="controller" method="post">
             <input type="hidden" name="command" value="ticket_search"/>
-            <input type="text" name="from" id="start" placeholder="from">
+            <input type="text" name="from" id="start" placeholder="<fmt:message key='jsp.from'/>">
             <input type="text" name="to" id="end" placeholder="to">
             <input type="submit" class="submit" value="search">
         </form>
@@ -47,13 +49,13 @@
             <div class="form" style="max-width: 100%; margin-top: 50px;font-size: 1.5em;">
                 <table class="table table-hover">
                     <tr>
-                        <th>Route No</th>
-                        <th>Train Model</th>
-                        <th>Departure</th>
-                        <th>Arrival</th>
-                        <th>Time in road</th>
-                        <th>Price</th>
-                        <th>Buy</th>
+                        <th><fmt:message key="jsp.RouteNo"/></th>
+                        <th><fmt:message key="jsp.TrainModel"/></th>
+                        <th><fmt:message key="jsp.Departure"/></th>
+                        <th><fmt:message key="jsp.Arrival"/></th>
+                        <th><fmt:message key="jsp.TimeInRoad"/></th>
+                        <th><fmt:message key="jsp.Price"/></th>
+                        <th><fmt:message key="jsp.Buy"/></th>
                     </tr>
 
                     <c:forEach items="${requestScope.appRoute}" var="r">

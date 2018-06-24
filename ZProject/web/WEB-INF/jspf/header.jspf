@@ -1,18 +1,20 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <div id="header" class="column span-24 last">
     <h1 class="column span-8 last">Railway express</h1>
     <div id="nav" class="column span-16 last">
         <ul>
             <c:if test="${sessionScope.userRoleId == 1}">
-                <li class="li_admin"><a title="admin" href="controller?command=get_page&page=admin">Admin </a> </li>
+                <li class="li_admin"><a title="admin" href="controller?command=get_page&page=admin"><fmt:message key="jsp.header.Admin"/></a> </li>
             </c:if>
-            <li class="li_home"><a title="home" href="controller?command=get_page&page=index">Home</a> </li>
-            <li class="li_home"><a title="home" href="controller?command=get_page&page=settings">Settings</a> </li>
+            <li class="li_home"><a title="home" href="controller?command=get_page&page=index"><fmt:message key="jsp.header.Home"/></a> </li>
+            <li class="li_home"><a title="home" href="controller?command=get_page&page=settings"><fmt:message key="jsp.header.Settings"/></a> </li>
             <c:choose>
                 <c:when test="${sessionScope.login == null}">
-                    <li><a href="controller?command=get_page&page=login"> login </a> </li>
+                    <li><a href="controller?command=get_page&page=login"> <fmt:message key="jsp.header.login"/> </a> </li>
                 </c:when>
                 <c:otherwise>
-                    <li><a href="controller?command=logout"> ${sessionScope.login} (logout)</a> </li>
+                    <li><a href="controller?command=logout"> ${sessionScope.login} (<fmt:message key="jsp.header.logout"/>)</a> </li>
                 </c:otherwise>
             </c:choose>
         </ul>

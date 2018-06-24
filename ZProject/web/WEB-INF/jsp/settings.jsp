@@ -7,7 +7,7 @@
 
 <html>
 <head>
-    <title>Settings</title>
+    <title><fmt:message key='jsp.header.Settings'/></title>
     <%@ include file="/WEB-INF/jspf/links.jspf" %>
     <script type="text/javascript" src="script/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="style/jquery-ui.css">
@@ -24,9 +24,9 @@
 
             <table class="table table-hover">
                 <tr>
-                    <th>Route No</th>
-                    <th>carriage</th>
-                    <th>place</th>
+                    <th><fmt:message key='jsp.RouteNo'/></th>
+                    <th><fmt:message key='jsp.carriage'/></th>
+                    <th><fmt:message key='jsp.place'/></th>
                 </tr>
 
                 <c:forEach items="${requestScope.tickets}" var="r">
@@ -49,9 +49,9 @@
                     <option>Spanish</option>
                     <option>Russian</option>
                 </select>
-                <input type="text" maxlength="32" value="${requestScope.userName}" placeholder="name" name="name"  />
-                <input type="text" maxlength="32" value="${requestScope.userSurname}" placeholder="surname" name="surname" />
-                <input type="submit" class="sub" value="save"/>
+                <input type="text" maxlength="32" value="${requestScope.userName}" placeholder="<fmt:message key='jsp.name'/>" name="name"  />
+                <input type="text" maxlength="32" value="${requestScope.userSurname}" placeholder="<fmt:message key='jsp.surname'/>" name="surname" />
+                <input type="submit" class="sub" value="<fmt:message key='jsp.save'/>"/>
             </form>
         </div>
     </div>

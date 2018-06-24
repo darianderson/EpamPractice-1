@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title>Home</title>
+    <title><fmt:message key='jsp.header.Admin'/></title>
     <%@ include file="/WEB-INF/jspf/links.jspf" %>
     <script type="text/javascript" src="script/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="style/jquery-ui.css">
@@ -25,7 +25,7 @@
     <div id="content" class="column span-24 last">
         <div class="admin-box">
             <div class="station-list">
-                <h1>Station List</h1>
+                <h1><fmt:message key='jsp.admin.StationList'/></h1>
                 <div class="row">
                     <div class="col-lg-9 col-12">
                         <div class="box-body">
@@ -34,10 +34,10 @@
                                        data-page-size="10">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name of Station</th>
-                                        <th>Country ID</th>
-                                        <th>Action</th>
+                                        <th><fmt:message key='jsp.admin.ID'/></th>
+                                        <th><fmt:message key='jsp.admin.NameOfStation'/></th>
+                                        <th><fmt:message key='jsp.admin.CountryID'/></th>
+                                        <th><fmt:message key='jsp.admin.Action'/></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -56,7 +56,7 @@
                                                     <button type="button"
                                                             class="btn btn-sm btn-danger-outline"
                                                             data-toggle="tooltip"
-                                                            data-original-title="Delete">Delete
+                                                            data-original-title="Delete"><fmt:message key='jsp.admin.Delete'/>
                                                     </button>
                                                 </a>
                                             </td>
@@ -68,9 +68,9 @@
                                 <form class="add_form" action="controller" method="post">
                                     <input type="hidden" name="command" value="station_add"/>
                                     <input type="text" name="name-of-station" id="station-name"
-                                           placeholder="Name of Station">
-                                    <input type="number" name="country" id="city" placeholder="county id">
-                                    <input type="submit" class="submit" value="Add">
+                                           placeholder="<fmt:message key='jsp.admin.NameOfStation'/>">
+                                    <input type="number" name="country" id="city" placeholder="<fmt:message key='jsp.admin.CountryID'/>">
+                                    <input type="submit" class="submit" value="<fmt:message key='jsp.admin.add'/>">
                                 </form>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                 </div>
             </div>
             <div class="ways-list">
-                <h1>Route List</h1>
+                <h1><fmt:message key='jsp.admin.RouteList'/></h1>
                 <div class="row">
                     <div class="col-lg-9 col-12">
                         <div class="box-body">
@@ -87,12 +87,12 @@
                                        data-page-size="10">
                                     <thead>
                                     <tr>
-                                        <th>Route ID</th>
-                                        <th>Train ID</th>
-                                        <th>Station ID</th>
-                                        <th>Arrival</th>
-                                        <th>Departure</th>
-                                        <th>Action</th>
+                                        <th><fmt:message key='jsp.admin.RouteID'/></th>
+                                        <th><fmt:message key='jsp.admin.TrainID'/></th>
+                                        <th><fmt:message key='jsp.admin.StationID'/></th>
+                                        <th><fmt:message key='jsp.admin.Arrival'/></th>
+                                        <th><fmt:message key='jsp.admin.Departure'/></th>
+                                        <th><fmt:message key='jsp.admin.Action'/></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -114,7 +114,7 @@
                                                      <button type="button"
                                                             class="btn btn-sm btn-danger-outline"
                                                             data-toggle="tooltip"
-                                                            data-original-title="Delete">Delete
+                                                            data-original-title="Delete"><fmt:message key='jsp.admin.Delete'/>
                                                     </button>
                                                 </a>
                                             </td>
@@ -125,13 +125,13 @@
                                 </table>
                                 <form class="add_form" action="controller" method="post">
                                     <input type="hidden"  name="command" value="route_add"/>
-                                    <input type="number" style="width: 80px;" name="route_id" class="add_field" id="from-station" placeholder="route id"/>
-                                    <input type="number" style="width: 80px;" name="train_id" class="add_field" id="from-station" placeholder="train id">
+                                    <input type="number" style="width: 80px;" name="route_id" class="add_field" id="from-station" placeholder="<fmt:message key='jsp.admin.RouteID'/>"/>
+                                    <input type="number" style="width: 80px;" name="train_id" class="add_field" id="from-station" placeholder="<fmt:message key='jsp.admin.TrainID'/>">
                                     <input type="number" style="width: 80px;" name="station_id" class="add_field" id="to-station"
-                                           placeholder="station id">
-                                    <input type="text" name="arrival" class="add_field" id="duration" placeholder="arrival">
-                                    <input type="text" name="departure" class="add_field" id="duration" placeholder="departure">
-                                    <input type="submit" class="submit" value="Add">
+                                           placeholder="<fmt:message key='jsp.admin.StationID'/>">
+                                    <input type="text" name="arrival" class="add_field" id="duration" placeholder="<fmt:message key='jsp.admin.Arrival'/>">
+                                    <input type="text" name="departure" class="add_field" id="duration" placeholder="<fmt:message key='jsp.admin.Departure'/>">
+                                    <input type="submit" class="submit" value="<fmt:message key='jsp.admin.add'/>">
                                 </form>
                             </div>
                         </div>

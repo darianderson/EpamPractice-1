@@ -28,15 +28,16 @@ public class GetPageCmd extends Command {
                 return Path.PAGE_LOGIN;
             case "settings":
                 String login = (String) req.getSession().getAttribute("login");
+                List<Ticket> tickets = new ArrayList<>();
                 if (login != null) {
                     User user = db.getUser(login);
-                    List<Ticket> tickets = db.getTicketsForUser(user);
-                    req.setAttribute("tickets", tickets);
+                    tickets = db.getTicketsForUser(user);
                     if (user.getName() != null)
                         req.setAttribute("userName", user.getName());
                     if (user.getSurname() != null)
                         req.setAttribute("userSurname", user.getSurname());
                 }
+                req.setAttribute("tickets", tickets);
                 return Path.PAGE_SETTINGS;
             case "admin":
                 List<Station> stations = db.getStations();

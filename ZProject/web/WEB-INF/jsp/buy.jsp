@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>Sign In</title>
+    <title><fmt:message key='jsp.Buy'/></title>
     <%@ include file="/WEB-INF/jspf/links.jspf" %>
 </head>
 
@@ -23,9 +23,9 @@
                 <input type="hidden" name="from" value="${requestScope.from}"/>
                 <input type="hidden" name="to" value="${requestScope.to}"/>
                 <input type="hidden" name="routeId" value="${requestScope.routeId}"/>
-                <input type="text" maxlength="32" placeholder="carriage" name="carriage" required="required"/>
-                <input type="text" maxlength="32" placeholder="place" name="place" required="required"/>
-                <input type="submit" class="sub" value="buy"/>
+                <input type="text" maxlength="32" placeholder="<fmt:message key='jsp.carriage'/>" name="carriage" required="required"/>
+                <input type="text" maxlength="32" placeholder="<fmt:message key='jsp.place'/>" name="place" required="required"/>
+                <input type="submit" class="sub" value="<fmt:message key='jsp.Buy'/>"/>
             </form>
         </div>
     </div>
