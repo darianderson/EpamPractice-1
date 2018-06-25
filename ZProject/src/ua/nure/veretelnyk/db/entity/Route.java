@@ -32,6 +32,14 @@ public class Route {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Route{" +
+                "id=" + id +
+                ", train=" + train +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

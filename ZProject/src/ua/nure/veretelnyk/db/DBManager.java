@@ -115,7 +115,6 @@ public class DBManager {
 
     public boolean updateUser(User user){
         PreparedStatement statement;
-        ResultSet rs;
 
         try (Connection con = getConnection()){
             statement = con.prepareStatement("UPDATE users SET name=?, surname=? WHERE id=?");
@@ -124,6 +123,7 @@ public class DBManager {
             statement.setInt(3, user.getId());
 
             statement.executeUpdate();
+            con.commit();
             return true;
 
         } catch (SQLException e) {

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * Checking all info, creating and inserting ticket to db
+ */
 public class BuyTicketCmd extends Command {
 
     private static final Logger LOG = Logger.getLogger(BuyTicketCmd.class);

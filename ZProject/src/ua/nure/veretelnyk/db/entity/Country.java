@@ -5,6 +5,14 @@ public class Country {
     private String fullName;
     private String shortName;
 
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

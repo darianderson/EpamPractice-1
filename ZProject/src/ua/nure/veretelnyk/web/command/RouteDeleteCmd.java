@@ -24,7 +24,8 @@ public class RouteDeleteCmd extends Command {
 
         LOG.debug("Deleting route " + routeIdStr);
 
-        if (routeIdStr == null || trainIdStr == null || stationIdStr == null) {
+        if (routeIdStr == null || trainIdStr == null || stationIdStr == null ||
+                routeIdStr.isEmpty() || trainIdStr.isEmpty() || stationIdStr.isEmpty()) {
             AppException ex = new AppException(Message.WRONG_INPUT);
             LOG.debug("Throw new AppException " + ex);
             throw ex;

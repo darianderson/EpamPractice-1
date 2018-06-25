@@ -30,7 +30,9 @@ public class RouteAddCmd extends Command {
         LOG.debug("Adding a route: " + routeIdStr + "; time: " + arrivalStr + " - " + departureStr);
 
         if (routeIdStr == null || trainIdStr == null || stationIdStr == null ||
-                arrivalStr == null || departureStr == null) {
+                arrivalStr == null || departureStr == null || routeIdStr.isEmpty() ||
+                trainIdStr.isEmpty() || stationIdStr.isEmpty() || arrivalStr.isEmpty() ||
+                departureStr.isEmpty()) {
             LOG.debug("Something is null. Throw new AppExcrption " + Message.WRONG_INPUT);
             throw new AppException(Message.WRONG_INPUT);
         }

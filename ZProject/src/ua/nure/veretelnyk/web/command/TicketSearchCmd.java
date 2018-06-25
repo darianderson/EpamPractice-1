@@ -8,7 +8,6 @@ import ua.nure.veretelnyk.db.entity.Carriage;
 import ua.nure.veretelnyk.db.entity.Route;
 import ua.nure.veretelnyk.db.entity.Station;
 import ua.nure.veretelnyk.db.entity.UserRoute;
-import ua.nure.veretelnyk.exception.AppException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,12 +17,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Search for tickets
+ * It is going on all routes and checking if to stations there and if
+ * they go one after another - we add this route to list
+ */
 public class TicketSearchCmd extends Command {
 
     private static final Logger LOG = Logger.getLogger(TicketSearchCmd.class);
 
+
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws  AppException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) {
         LOG.debug("Searching for tickets");
         String fromStation, fromCountry, toStation, toCountry;
         try {
@@ -34,7 +39,7 @@ public class TicketSearchCmd extends Command {
             toCountry = req.getParameter("to").split(", ")[1];
         } catch (ArrayIndexOutOfBoundsException e){
             LOG.debug(Message.WRONG_INPUT);
-            throw new AppException(Message.WRONG_INPUT);
+            return Path.PAGE_HOME;
         }
 
 

@@ -7,6 +7,14 @@ public class Train {
     private Model model;
     private Date since;
 
+    @Override
+    public String toString() {
+        return "Train{" +
+                "id=" + id +
+                ", model=" + model +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

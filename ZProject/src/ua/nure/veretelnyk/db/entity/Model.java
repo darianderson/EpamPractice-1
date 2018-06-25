@@ -4,6 +4,14 @@ public class Model {
     private int id;
     private String model;
 
+    @Override
+    public String toString() {
+        return "Model{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

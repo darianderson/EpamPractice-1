@@ -11,6 +11,16 @@ public class Ticket {
     private int placeNo;
     private boolean wasPayed;
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "user=" + user +
+                ", route=" + route +
+                ", carriageNo=" + carriageNo +
+                ", placeNo=" + placeNo +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

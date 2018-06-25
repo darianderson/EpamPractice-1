@@ -52,6 +52,7 @@ public class SettingsCmd extends Command {
         else{
             DBManager db = DBManager.getInstance();
             User user = db.getUser(login);
+            LOG.debug("Setting name for user " + name + " " + surname);
             user.setName(name);
             user.setSurname(surname);
             if(!db.updateUser(user))

@@ -20,7 +20,7 @@ public class StationAddCmd extends Command {
 
         LOG.debug("Add new station " + name + " in " + country);
 
-        if (name == null || country == null)
+        if (name == null || country == null || name.isEmpty() || country.isEmpty())
             throw new AppException(Message.WRONG_INPUT);
 
         DBManager db = DBManager.getInstance();

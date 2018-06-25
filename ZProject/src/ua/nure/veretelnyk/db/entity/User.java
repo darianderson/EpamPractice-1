@@ -8,6 +8,15 @@ public class User {
     private String surname;
     private Role role;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", role=" + role +
+                '}';
+    }
+
     public static User create() { return new User(); }
 
     private User() {}

@@ -22,7 +22,7 @@ public class GetPageCmd extends Command {
         switch (page) {
             default:
             case "index":
-                setStations(req);
+                req.setAttribute("stations", getStations());
                 return Path.PAGE_HOME;
             case "login":
                 return Path.PAGE_LOGIN;
@@ -71,8 +71,12 @@ public class GetPageCmd extends Command {
     }
 
 
-
-    private void setStations(HttpServletRequest req){
+    /**
+     * Setting up stations for index page
+     * It is to make a hint when user enter station
+     * @return list type: station, country
+     */
+    private List<String> getStations(){
         DBManager dbManager = DBManager.getInstance();
 
         List<Station> stations = dbManager.getStations();
@@ -81,8 +85,7 @@ public class GetPageCmd extends Command {
         for(Station station : stations)
             stationsNames.add(station.getName() +", "+station.getCountry().getFullName());
 
-        req.setAttribute("stations", stationsNames);
-
+        return stationsNames;
     }
 
 }

@@ -7,6 +7,14 @@ public class Carriage {
     private int number;
     private int price;
 
+    @Override
+    public String toString() {
+        return "Carriage{" +
+                "id=" + id +
+                ", type=" + type +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

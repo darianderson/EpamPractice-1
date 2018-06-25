@@ -1,0 +1,11 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>AG</short-name>
+
+    <tag>
+        <name>AllGood</name>
+        <tag-class>ua.nure.veretelnyk.web.AllGoodTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+</taglib>

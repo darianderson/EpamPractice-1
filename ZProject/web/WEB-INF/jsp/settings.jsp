@@ -1,6 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
+<%@ taglib prefix = "ex" uri = "/WEB-INF/custom.tld"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:if test="${requestScope.tickets == null}">
@@ -52,7 +52,9 @@
         <div id="sidebar" style="margin-left: 50px; margin-top: 0;" class="column span-8 last">
             <form action="controller" method="post" class="form">
                 <input type="hidden" name="command" value="settings_pane"/>
-
+                <%--c:if test="${requestScope.errorMessage == null}">
+                    <ex:AllGood/>
+                </c:if --%>
                 <select name="locale" >
                     <c:forEach items="${applicationScope.locales}" var="locale">
                         <c:set var="selected" value="${locale.key == currentLocale ? 'selected' : '' }"/>
