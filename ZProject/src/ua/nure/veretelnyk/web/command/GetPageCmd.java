@@ -1,24 +1,24 @@
 package ua.nure.veretelnyk.web.command;
 
+import org.apache.log4j.Logger;
 import ua.nure.veretelnyk.Path;
 import ua.nure.veretelnyk.db.DBManager;
 import ua.nure.veretelnyk.db.entity.*;
-import ua.nure.veretelnyk.exception.AppException;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GetPageCmd extends Command {
 
+    private static final Logger LOG = Logger.getLogger(GetPageCmd.class);
+
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, AppException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) {
         String page = req.getParameter("page");
         DBManager db = DBManager.getInstance();
+        LOG.debug("Request for the page: "+page);
         switch (page) {
             default:
             case "index":

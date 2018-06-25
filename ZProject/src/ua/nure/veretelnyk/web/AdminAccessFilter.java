@@ -1,5 +1,6 @@
 package ua.nure.veretelnyk.web;
 
+import org.apache.log4j.Logger;
 import ua.nure.veretelnyk.Path;
 
 import javax.servlet.*;
@@ -7,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class AdminAccessFilter implements Filter {
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
 
+    private static final Logger LOG = Logger.getLogger(AdminAccessFilter.class);
+
+    @Override
+    public void init(FilterConfig filterConfig) {
+        LOG.debug("Filter init");
     }
 
     @Override
@@ -25,11 +29,12 @@ public class AdminAccessFilter implements Filter {
                         .forward(servletRequest, servletResponse);
 
         }
+        LOG.debug("filter is processed fine");
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
     public void destroy() {
-
+        LOG.debug("Filter destroy");
     }
 }

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:if test="${sessionScope.login == null || sessionScope.userRoleId != 1}">
     <jsp:forward page="/controller?command=get_page&page=index"/>
 </c:if>

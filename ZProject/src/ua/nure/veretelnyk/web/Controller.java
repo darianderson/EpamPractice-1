@@ -2,20 +2,15 @@ package ua.nure.veretelnyk.web;
 
 import org.apache.log4j.Logger;
 import ua.nure.veretelnyk.Path;
-import ua.nure.veretelnyk.db.DBManager;
-import ua.nure.veretelnyk.db.entity.Route;
-import ua.nure.veretelnyk.db.entity.User;
 import ua.nure.veretelnyk.exception.AppException;
 import ua.nure.veretelnyk.web.command.Command;
 import ua.nure.veretelnyk.web.command.CommandContainer;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 public class Controller extends HttpServlet {
 

@@ -26,10 +26,8 @@ public class ContextListener implements ServletContextListener {
     private void localesInit(ServletContext servletContext) {
         String localesFileName = servletContext.getInitParameter("locales");
 
-        // obtain reale path on server
         String localesFileRealPath = servletContext.getRealPath(localesFileName);
 
-        // locad descriptions
         Properties locales = new Properties();
         try {
             locales.load(new FileInputStream(localesFileRealPath));
@@ -37,7 +35,6 @@ public class ContextListener implements ServletContextListener {
             e.printStackTrace();
         }
 
-        // save descriptions to servlet context
         servletContext.setAttribute("locales", locales);
     }
 
@@ -60,8 +57,6 @@ public class ContextListener implements ServletContextListener {
 
 
     private void initCommandContainer() {
-        // initialize commands container
-        // just load class to JVM
         try {
             Class.forName("ua.nure.veretelnyk.web.command.CommandContainer");
         } catch (ClassNotFoundException ex) {

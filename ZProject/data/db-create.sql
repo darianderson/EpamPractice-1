@@ -3,6 +3,7 @@
 ##GRANT ALL ON railways.* TO 'blackwell'@'localhost' IDENTIFIED BY 'salt';
 ##use railways;
 
+default-character-set=utf8
 DROP TABLE IF EXISTS tickets;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
@@ -157,11 +158,13 @@ CREATE TABLE tickets(
   route_id INTEGER UNSIGNED NOT NULL,
   fromSt INTEGER UNSIGNED NOT NULL,
   toSt INTEGER UNSIGNED NOT NULL,
+  type INTEGER UNSIGNED NOT NULL,
   carriage_no INTEGER UNSIGNED NOT NULL,
   place INTEGER,
-  wasPayed BIT DEFAULT 0,
+  wasPayed BIT DEFAULT 1,
 
   FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (type) REFERENCES carriage_type(id),
   FOREIGN KEY (fromSt) REFERENCES stations(id),
   FOREIGN KEY (toSt) REFERENCES stations(id)
 ) ENGINE=InnoDB;

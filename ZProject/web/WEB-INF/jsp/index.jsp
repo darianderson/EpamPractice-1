@@ -41,8 +41,8 @@
         <form id="search_form" action="controller" method="post">
             <input type="hidden" name="command" value="ticket_search"/>
             <input type="text" name="from" id="start" placeholder="<fmt:message key='jsp.from'/>">
-            <input type="text" name="to" id="end" placeholder="to">
-            <input type="submit" class="submit" value="search">
+            <input type="text" name="to" id="end" placeholder="<fmt:message key='jsp.to'/>">
+            <input type="submit" class="submit" value="<fmt:message key='jsp.search'/>">
         </form>
 
         <c:if test="${requestScope.appRoute != null}">
@@ -66,7 +66,7 @@
                             <td> ${r.getArrival()}</td>
                             <td> ${r.getRoadTime()}</td>
                             <td> ${r.getPrice()}</td>
-                            <td> <a href="${r.getBuyLink()}">buy</a></td>
+                            <td> <a href="${r.getBuyLink()}"><fmt:message key='jsp.Buy'/></a></td>
                         </tr>
                     </c:forEach>
 

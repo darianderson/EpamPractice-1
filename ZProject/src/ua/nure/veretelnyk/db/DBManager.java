@@ -392,12 +392,13 @@ public class DBManager {
         PreparedStatement statement;
 
         try(Connection con = getConnection()){
-            statement = con.prepareStatement("INSERT INTO tickets(user_id, route_id, fromSt, toSt, carriage_no, place, wasPayed) VALUE (?,?,?,?,?,?,?)");
+            statement = con.prepareStatement("INSERT INTO tickets(user_id, route_id, fromSt, toSt, type, carriage_no, place, wasPayed) VALUE (?,?,?,?,?,?,?,?)");
             int k=1;
             statement.setInt(k++, ticket.getUser().getId());
             statement.setInt(k++, ticket.getRoute().getId());
             statement.setInt(k++, ticket.getFrom().getId());
             statement.setInt(k++,ticket.getTo().getId());
+            statement.setInt(k++,ticket.getType().ordinal());
             statement.setInt(k++, ticket.getCarriageNo());
             statement.setInt(k++, ticket.getPlaceNo());
             statement.setBoolean(k++, ticket.isWasPayed());

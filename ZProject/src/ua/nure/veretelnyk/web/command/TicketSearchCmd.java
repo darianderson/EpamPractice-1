@@ -1,5 +1,7 @@
 package ua.nure.veretelnyk.web.command;
 
+import org.apache.log4j.Logger;
+import ua.nure.veretelnyk.Message;
 import ua.nure.veretelnyk.Path;
 import ua.nure.veretelnyk.db.DBManager;
 import ua.nure.veretelnyk.db.entity.Carriage;
@@ -8,10 +10,8 @@ import ua.nure.veretelnyk.db.entity.Station;
 import ua.nure.veretelnyk.db.entity.UserRoute;
 import ua.nure.veretelnyk.exception.AppException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,9 +20,11 @@ import java.util.List;
 
 public class TicketSearchCmd extends Command {
 
+    private static final Logger LOG = Logger.getLogger(TicketSearchCmd.class);
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, AppException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws  AppException {
+        LOG.debug("Searching for tickets");
         String fromStation, fromCountry, toStation, toCountry;
         try {
             fromStation = req.getParameter("from").split(", ")[0];
@@ -31,7 +33,8 @@ public class TicketSearchCmd extends Command {
             toStation = req.getParameter("to").split(", ")[0];
             toCountry = req.getParameter("to").split(", ")[1];
         } catch (ArrayIndexOutOfBoundsException e){
-            throw new AppException("Wrong input data.");
+            LOG.debug(Message.WRONG_INPUT);
+            throw new AppException(Message.WRONG_INPUT);
         }
 
 
@@ -91,6 +94,7 @@ public class TicketSearchCmd extends Command {
         }
 
 
+        LOG.debug("Search finished. Total tickets: " + appropriateRoute.size());
         req.setAttribute("appRoute", appropriateRoute);
         return Path.PAGE_HOME;
     }

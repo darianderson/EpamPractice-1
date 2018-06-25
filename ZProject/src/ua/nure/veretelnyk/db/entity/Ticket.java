@@ -6,6 +6,7 @@ public class Ticket {
     private Route route;
     private Station from;
     private Station to;
+    private CarriageType type;
     private int carriageNo;
     private int placeNo;
     private boolean wasPayed;
@@ -13,7 +14,6 @@ public class Ticket {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -30,6 +30,13 @@ public class Ticket {
     }
     public void setRoute(Route route) {
         this.route = route;
+    }
+
+    public CarriageType getType() {
+        return type;
+    }
+    public void setType(CarriageType type) {
+        this.type = type;
     }
 
     public int getCarriageNo() {
@@ -49,7 +56,6 @@ public class Ticket {
     public Station getFrom() {
         return from;
     }
-
     public void setFrom(Station from) {
         this.from = from;
     }
@@ -57,7 +63,6 @@ public class Ticket {
     public Station getTo() {
         return to;
     }
-
     public void setTo(Station to) {
         this.to = to;
     }
@@ -65,7 +70,6 @@ public class Ticket {
     public boolean isWasPayed() {
         return wasPayed;
     }
-
     public void setWasPayed(boolean wasPayed) {
         this.wasPayed = wasPayed;
     }

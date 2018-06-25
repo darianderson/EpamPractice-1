@@ -1,28 +1,30 @@
 package ua.nure.veretelnyk.web.command;
 
+import org.apache.log4j.Logger;
+import ua.nure.veretelnyk.Message;
 import ua.nure.veretelnyk.Path;
 import ua.nure.veretelnyk.db.DBManager;
 import ua.nure.veretelnyk.db.entity.Carriage;
-import ua.nure.veretelnyk.db.entity.Route;
+import ua.nure.veretelnyk.db.entity.CarriageType;
 import ua.nure.veretelnyk.db.entity.Ticket;
 import ua.nure.veretelnyk.db.entity.User;
-import ua.nure.veretelnyk.exception.AppException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
-public class BuyTicket extends Command {
+public class BuyTicketCmd extends Command {
+
+    private static final Logger LOG = Logger.getLogger(BuyTicketCmd.class);
+
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, AppException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp){
         String routeId = req.getParameter("routeId");
         String carriageStr = req.getParameter("carriage");
         String placeStr = req.getParameter("place");
+        String type = req.getParameter("type");
 
-        String errorMessage = "Everything is fine.";
+        String errorMessage = Message.EVERYTHING_IS_FINE;
         String forward = Path.PAGE_BUY;
         DBManager db = DBManager.getInstance();
         String login = (String) req.getSession().getAttribute("login");
@@ -35,10 +37,11 @@ public class BuyTicket extends Command {
 
         Ticket ticket = new Ticket();
         ticket.setUser(user);
+        ticket.setType(CarriageType.valueOf(type));
         ticket.setRoute(db.getRoute(Integer.parseInt(routeId)));
         ticket.setPlaceNo(place);
         ticket.setCarriageNo(carriage);
-
+        LOG.debug("User is buying ticket: "+ticket);
 
         int fromId = Integer.parseInt(req.getParameter("from"));
         int toId = Integer.parseInt(req.getParameter("to"));
@@ -50,11 +53,11 @@ public class BuyTicket extends Command {
         req.setAttribute("to", toId);
 
         if (carriage > carriages.size() || carriage < 0)
-            errorMessage = "Wrong carriage";
+            errorMessage = Message.WRONG_CARRIAGE;
         else if(place > carriages.get(carriage).getTotalPlaces() || place < 0)
-            errorMessage = "Wrong place";
+            errorMessage = Message.WRONG_PLACE;
         else if(login == null)
-            errorMessage = "You are nor log in";
+            errorMessage = Message.NOT_LOGIN;
         else{
 
 
@@ -68,9 +71,9 @@ public class BuyTicket extends Command {
 
             boolean res = db.addTicket(ticket);
             if (isTicketBought)
-                errorMessage = "You already buy this ticket.";
+                errorMessage = Message.ALREADY_BUY_THIS_TICKET;
             else if (!res)
-                errorMessage = "Woops...";
+                errorMessage = Message.WOOPS;
             else {
                 forward = Path.PAGE_SETTINGS;
             }
@@ -80,8 +83,8 @@ public class BuyTicket extends Command {
         req.setAttribute("carriage", carriageStr);
         req.setAttribute("placeStr", placeStr);
 
-
-        req.setAttribute("errorMessage", errorMessage);
+        LOG.debug("Result of buying ticket: "+errorMessage);
+        req.setAttribute(Message.ERROR_MESSAGE_ATTRIBUTE, errorMessage);
         return forward;
     }
 }
