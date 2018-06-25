@@ -40,7 +40,7 @@ public class BuyTicketCmd extends Command {
 
         Ticket ticket = new Ticket();
         ticket.setUser(user);
-        ticket.setType(CarriageType.valueOf(type));
+        ticket.setType(CarriageType.valueOf(type.trim()));
         ticket.setRoute(db.getRoute(Integer.parseInt(routeId)));
         ticket.setPlaceNo(place);
         ticket.setCarriageNo(carriage);

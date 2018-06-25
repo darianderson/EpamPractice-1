@@ -398,7 +398,7 @@ public class DBManager {
             statement.setInt(k++, ticket.getRoute().getId());
             statement.setInt(k++, ticket.getFrom().getId());
             statement.setInt(k++,ticket.getTo().getId());
-            statement.setInt(k++,ticket.getType().ordinal());
+            statement.setInt(k++,ticket.getType().ordinal()+1);
             statement.setInt(k++, ticket.getCarriageNo());
             statement.setInt(k++, ticket.getPlaceNo());
             statement.setBoolean(k++, ticket.isWasPayed());
