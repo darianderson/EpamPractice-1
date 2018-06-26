@@ -1,7 +1,6 @@
 package ua.nure.veretelnyk.db;
 
 import ua.nure.veretelnyk.db.entity.*;
-import ua.nure.veretelnyk.exception.AppException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -22,6 +21,14 @@ public class DBManager {
     private DataSource dataSource;
 
     private static DBManager instance;
+
+    private static final String SQL_SELECT_USERS_WHERE_LOGIN = "SELECT * FROM users WHERE login=?";
+    private static final String SQL_SELECT_USERS_BY_LOGIN_PASS= "SELECT * FROM users WHERE login=? AND password=?";
+    private static final String SQL_INSERT_USER = "INSERT INTO users(login, password) VALUE (?,?)";
+    private static final String SQL_UPDATE_USER= "UPDATE users SET name=?, surname=? WHERE id=?";
+    private static final String SQL_INSERT_COUNTRIES = "INSERT INTO countries(id) VALUES(?)";
+    private static final String SQL_FROM_COUNTRIES_BY_ID= "SELECT * FROM countries WHERE id=?";
+
 
     public static synchronized DBManager getInstance(){
         if (instance == null)
@@ -50,18 +57,17 @@ public class DBManager {
         return con;
     }
 
-
     public User getUser(String login, String pass){
         PreparedStatement statement;
         ResultSet rs;
 
         try (Connection con = getConnection()){
             if("".equals(pass)) {
-                statement = con.prepareStatement("SELECT * FROM users WHERE login=?");
+                statement = con.prepareStatement(SQL_SELECT_USERS_WHERE_LOGIN);
                 statement.setString(1, login);
             }
             else{
-                statement = con.prepareStatement("SELECT * FROM users WHERE login=? AND password=?");
+                statement = con.prepareStatement(SQL_SELECT_USERS_BY_LOGIN_PASS);
                 statement.setString(1, login);
                 statement.setString(2, pass);
             }
@@ -85,25 +91,9 @@ public class DBManager {
         PreparedStatement statement;
 
         try(Connection con = getConnection()){
-            statement = con.prepareStatement("INSERT INTO users(login, password) VALUE (?,?)");
+            statement = con.prepareStatement(SQL_INSERT_USER);
             statement.setString(1, login);
             statement.setString(2, pass);
-
-            statement.executeUpdate();
-            con.commit();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public boolean addCountryNo(int no){
-        PreparedStatement statement;
-
-        try(Connection con = getConnection()){
-            statement = con.prepareStatement("INSERT INTO countries(id) VALUES(?)");
-            statement.setString(1, String.valueOf(no));
 
             statement.executeUpdate();
             con.commit();
@@ -133,7 +123,7 @@ public class DBManager {
         PreparedStatement statement;
 
         try (Connection con = getConnection()){
-            statement = con.prepareStatement("UPDATE users SET name=?, surname=? WHERE id=?");
+            statement = con.prepareStatement(SQL_UPDATE_USER);
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
             statement.setInt(3, user.getId());
@@ -149,12 +139,28 @@ public class DBManager {
     }
 
 
-    public Country getCountry(int id){
+    public boolean addCountryNo(int no){
+        PreparedStatement statement;
+
+        try(Connection con = getConnection()){
+            statement = con.prepareStatement(SQL_INSERT_COUNTRIES);
+            statement.setString(1, String.valueOf(no));
+
+            statement.executeUpdate();
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private Country getCountry(int id){
         PreparedStatement statement;
         ResultSet rs;
 
         try (Connection con = getConnection()){
-            statement = con.prepareStatement("SELECT * FROM countries WHERE id=?");
+            statement = con.prepareStatement(SQL_FROM_COUNTRIES_BY_ID);
             statement.setInt(1, id);
             rs = statement.executeQuery();
 
@@ -169,7 +175,7 @@ public class DBManager {
         return null;
     }
 
-    public Country extractCountry(ResultSet rs) throws SQLException {
+    private Country extractCountry(ResultSet rs) throws SQLException {
         Country country = new Country();
 
         country.setId(rs.getInt("id"));
@@ -179,7 +185,7 @@ public class DBManager {
         return country;
     }
 
-    public List<Country> getCountries(){
+    private List<Country> getCountries(){
         List<Country> countries = new ArrayList<>();
         PreparedStatement statement;
         ResultSet rs;
@@ -254,7 +260,7 @@ public class DBManager {
         return null;
     }
 
-    public Model getModel(int id){
+    private Model getModel(int id){
         PreparedStatement statement;
         ResultSet rs;
 
@@ -322,9 +328,7 @@ public class DBManager {
                 addStationForRoute(route, rs);
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (SQLException | ParseException e) {
             e.printStackTrace();
         }
 
@@ -442,7 +446,7 @@ public class DBManager {
     }
 
 
-    public CarriageType getCarriageType(int id){
+    private CarriageType getCarriageType(int id){
         CarriageType type = null;
         PreparedStatement statement;
         ResultSet rs;
@@ -463,7 +467,7 @@ public class DBManager {
         return type;
     }
 
-    public Carriage getCarriage(int id){
+    private Carriage getCarriage(int id){
         Carriage carriage = new Carriage();
         PreparedStatement statement;
         ResultSet rs;
