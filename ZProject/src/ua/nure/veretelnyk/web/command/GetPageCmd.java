@@ -39,12 +39,19 @@ public class GetPageCmd extends Command {
                 }
                 req.setAttribute("tickets", tickets);
                 return Path.PAGE_SETTINGS;
+            case "iroute":
+                int routeIdInt = Integer.parseInt(req.getParameter("routeid"));
+                Route r = db.getRoute(routeIdInt);
+                req.setAttribute("route", r);
+                return Path.PAGE_ROUTE_INFO;
             case "admin":
                 List<Station> stations = db.getStations();
                 req.setAttribute("stations", stations);
 
                 List<RoutePart> routes = db.getRouteParts();
                 req.setAttribute("routes", routes);
+
+
 
                 return Path.PAGE_ADMIN;
             case "buy":

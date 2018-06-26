@@ -38,7 +38,7 @@ public class Controller extends HttpServlet {
         String forward = Path.PAGE_ERROR;
         try {
             forward = cmd.execute(req, resp);
-        } catch (AppException e) {
+        } catch (AppException | NullPointerException | ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
             LOG.error("Getting exception from executing command.");
         }
@@ -47,5 +47,18 @@ public class Controller extends HttpServlet {
         req.getRequestDispatcher(forward).forward(req, resp);
     }
 }
+
+/*
+
+500 - fix
+validation date
+settings - tickets - date train NO departure,
+ticket show
+
+route
+train number
+story
+
+*/
 
 

@@ -98,6 +98,22 @@ public class DBManager {
         return false;
     }
 
+    public boolean addCountryNo(int no){
+        PreparedStatement statement;
+
+        try(Connection con = getConnection()){
+            statement = con.prepareStatement("INSERT INTO countries(id) VALUES(?)");
+            statement.setString(1, String.valueOf(no));
+
+            statement.executeUpdate();
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private User extractUser(ResultSet rs){
         User user = User.create();
         try {
@@ -230,8 +246,6 @@ public class DBManager {
 
         return station;
     }
-
-
 
     private Route getRouteFromList(List<Route> routeList, int id){
         for(Route r : routeList)
@@ -378,7 +392,22 @@ public class DBManager {
                 ticket.setFrom(getStation(rs.getInt("fromSt")));
                 ticket.setTo(getStation(rs.getInt("toSt")));
                 ticket.setWasPayed(rs.getBoolean("wasPayed"));
+                ticket.setLinkToRoute("/controller?command=get_page&page=iroute&routeid="+rs.getInt("route_id"));
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+                Date arr = new Date();
+                Date dep = new Date();
+                List<Route.Stop> stops = ticket.getRoute().getStations();
+                for(Route.Stop s : stops){
+                    if (s.getStation().getName().equals(ticket.getFrom().getName()))
+                        dep = s.getDeparture();
+
+                    if (s.getStation().getName().equals(ticket.getTo().getName()))
+                        arr = s.getArrival();
+                }
+
+                ticket.setArrivalStr(df.format(arr));
+                ticket.setDepartureStr(df.format(dep));
                 tickets.add(ticket);
             }
         } catch (SQLException e) {
@@ -498,6 +527,7 @@ public class DBManager {
                 part.setRouteId(rs.getInt("id"));
                 part.setTrainId(rs.getInt("train_id"));
                 part.setStationId(rs.getInt("station_id"));
+                part.setStationName(getStation(part.getStationId()).getName());
                 part.setArrival(df.parse(rs.getString("arrival")));
                 part.setDeparture(df.parse(rs.getString("departure")));
                 parts.add(part);

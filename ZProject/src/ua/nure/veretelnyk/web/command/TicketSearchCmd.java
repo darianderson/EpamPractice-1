@@ -26,7 +26,6 @@ public class TicketSearchCmd extends Command {
 
     private static final Logger LOG = Logger.getLogger(TicketSearchCmd.class);
 
-
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         LOG.debug("Searching for tickets");

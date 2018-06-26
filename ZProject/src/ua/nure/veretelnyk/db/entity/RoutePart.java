@@ -6,6 +6,7 @@ public class RoutePart {
     private int routeId;
     private int trainId;
     private int stationId;
+    private String stationName;
     private Date arrival;
     private Date departure;
 
@@ -48,6 +49,14 @@ public class RoutePart {
 
     public void setDeparture(Date departure) {
         this.departure = departure;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
     }
 
     @Override

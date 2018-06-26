@@ -55,14 +55,13 @@ public class BuyTicketCmd extends Command {
         req.setAttribute("from", fromId);
         req.setAttribute("to", toId);
 
-        if (carriage > carriages.size() || carriage < 0)
+        if (carriage >= carriages.size() || carriage < 0)
             errorMessage = Message.WRONG_CARRIAGE;
         else if(place > carriages.get(carriage).getTotalPlaces() || place < 0)
             errorMessage = Message.WRONG_PLACE;
         else if(login == null)
             errorMessage = Message.NOT_LOGIN;
         else{
-
 
             List<Ticket> tickets = db.getTicketsForUser(user);
             boolean isTicketBought = false;

@@ -103,7 +103,7 @@
                                         <tr>
                                             <td>${r.getRouteId()}</td>
                                             <td>${r.getTrainId()}</td>
-                                            <td>${r.getStationId()}</td>
+                                            <td>${r.getStationName()}</td>
                                             <td>${r.getArrival()}</td>
                                             <td>${r.getDeparture()}</td>
                                             <td>
@@ -131,8 +131,8 @@
                                     <input type="number" style="width: 80px;" name="train_id" class="add_field" id="from-station" placeholder="<fmt:message key='jsp.admin.TrainID'/>">
                                     <input type="number" style="width: 80px;" name="station_id" class="add_field" id="to-station"
                                            placeholder="<fmt:message key='jsp.admin.StationID'/>">
-                                    <input type="text" name="arrival" class="add_field" id="duration" placeholder="<fmt:message key='jsp.admin.Arrival'/>">
-                                    <input type="text" name="departure" class="add_field" id="duration" placeholder="<fmt:message key='jsp.admin.Departure'/>">
+                                    <input type="datetime-local" name="arrival" class="add_field" id="duration" placeholder="<fmt:message key='jsp.admin.Arrival'/>">
+                                    <input type="datetime-local" name="departure" class="add_field" id="duration" placeholder="<fmt:message key='jsp.admin.Departure'/>">
                                     <input type="submit" class="submit" value="<fmt:message key='jsp.admin.add'/>">
                                 </form>
                             </div>

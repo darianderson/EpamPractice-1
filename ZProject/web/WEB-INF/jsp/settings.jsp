@@ -31,23 +31,36 @@
     <div id="content" class="column span-24 last">
         <div id="tickets" class="column span-15 last">
 
+            <div class="form" style="max-width: 100%; font-size: 1.5em;">
             <table class="table table-hover">
                 <tr>
                     <th><fmt:message key='jsp.RouteNo'/></th>
+                    <th>Train No</th>
                     <th><fmt:message key='jsp.carriage'/></th>
                     <th><fmt:message key='jsp.place'/></th>
+                    <td>Arrival</td>
+                    <td>Departure</td>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>more</th>
                 </tr>
 
                 <c:forEach items="${requestScope.tickets}" var="r">
                     <tr>
                         <td> ${r.getRoute().getId()} </td>
+                        <td> ${r.getRoute().getTrain().getId()}</td>
                         <td> ${r.getCarriageNo()}</td>
                         <td> ${r.getPlaceNo()}</td>
+                        <td> ${r.getArrivalStr()}</td>
+                        <td> ${r.getDepartureStr()}</td>
+                        <td> ${r.getFrom().getName()}</td>
+                        <td> ${r.getTo().getName()}</td>
+                        <td> <a href="${r.getLinkToRoute()}">more</a></td>
                     </tr>
                 </c:forEach>
 
             </table>
-
+            </div>
         </div>
         <div id="sidebar" style="margin-left: 50px; margin-top: 0;" class="column span-8 last">
             <form action="controller" method="post" class="form">
