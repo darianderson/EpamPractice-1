@@ -335,8 +335,6 @@ public class DBManager {
         return routes;
     }
 
-
-
     public Route getRoute(int id){
         Route route = new Route();
         PreparedStatement statement;
